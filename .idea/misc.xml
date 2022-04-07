@@ -3,6 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/TARUC/Degree Y2S3/Mobile App/CookbookApp/app/src/main/res/layout/activity_main.xml" value="0.27291666666666664" />
+        <entry key="..\:/TARUC/Degree Y2S3/Mobile App/CookbookApp/app/src/main/res/layout/create_recipe_1.xml" value="0.27291666666666664" />
+        <entry key="..\:/TARUC/Degree Y2S3/Mobile App/CookbookApp/app/src/main/res/layout/create_recipe_2.xml" value="0.27291666666666664" />
+        <entry key="..\:/TARUC/Degree Y2S3/Mobile App/CookbookApp/app/src/main/res/layout/search_recipe.xml" value="0.27291666666666664" />
+        <entry key="..\:/TARUC/Degree Y2S3/Mobile App/CookbookApp/app/src/main/res/layout/tag_search.xml" value="0.27291666666666664" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/CookbookApp/app/src/main/res/layout/activity_main.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/ASUS/StudioProjects/CookbookApp/app/src/main/res/layout/activity_main.xml" value="0.22826086956521738" />
       </map>
