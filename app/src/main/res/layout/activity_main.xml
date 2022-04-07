@@ -52,8 +52,9 @@
 
     <Button
         android:id="@+id/button_login"
+        style="@style/theme_yellow_button"
+        android:backgroundTint="@color/theme_yellow_dark"
         android:text="@string/login"
-        tools:ignore="TextContrastCheck"
-        style="@style/theme_yellow_button" />
+        tools:ignore="TextContrastCheck" />
 
 </LinearLayout>
