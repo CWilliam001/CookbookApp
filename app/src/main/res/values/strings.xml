@@ -1,4 +1,5 @@
 <resources>
+    <!-- Main Activity -->
     <string name="app_name">CookbookApp</string>
     <string name="email_address">Email address</string>
     <string name="enter_your_email">Enter your email</string>
@@ -7,13 +8,13 @@
     <string name="cookbook">Cookbook</string>
     <string name="create_new_account">Create New Account</string>
     <string name="login">Login</string>
-    <string name="title_activity_add_recipe">AddRecipe</string>
-    <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
 
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <!-- Dashboard -->
+    <string name="search">Search</string>
+    <string name="add_recipe">Add Recipe</string>
+    <string name="my_recipe">My Recipe</string>
+    <string name="tags">Tags</string>
+    <string name="favourites">Favourites</string>
+    <string name="history">History</string>
+
 </resources>

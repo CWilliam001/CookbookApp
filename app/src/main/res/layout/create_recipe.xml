@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".recipe.AddRecipe">
+    android:orientation="vertical"
+    tools:context=".recipe.CreateRecipe">
 
     <TextView
         android:id="@+id/recipeNameTitle"
@@ -160,6 +161,5 @@
         android:layout_marginRight="10dp"
         android:ems="10"
         android:inputType="textPersonName" />
-
 
 </LinearLayout>

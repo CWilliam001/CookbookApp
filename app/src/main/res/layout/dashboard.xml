@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Dashboard">
+
+    <ImageView
+        android:id="@+id/cookbook_dashboard"
+        android:layout_width="match_parent"
+        android:layout_height="203dp"
+        android:layout_marginTop="@dimen/textMarginY20"
+        android:contentDescription="@string/cookbook"
+        app:srcCompat="@drawable/cookbook"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="2dp" />
+
+    <Button
+        android:id="@+id/button_to_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginLeft="@dimen/textMarginX"
+        android:layout_marginTop="@dimen/textMarginY15"
+        android:layout_marginRight="@dimen/textMarginX"
+        android:backgroundTint="@color/theme_yellow_dark"
+        android:text="@string/search"
+        android:textColor="#FFFFFF"
+        android:textColorLink="#00FFDE"
+        tools:ignore="TextContrastCheck" />
+
+    <Button
+        android:id="@+id/button_to_add_recipe"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginLeft="@dimen/textMarginX"
+        android:layout_marginTop="@dimen/textMarginY15"
+        android:layout_marginRight="@dimen/textMarginX"
+        android:backgroundTint="@color/theme_yellow_dark"
+        android:text="@string/add_recipe"
+        android:textColor="#FFFFFF"
+        android:textColorLink="#00FFDE"
+        tools:ignore="TextContrastCheck" />
+
+    <Button
+        android:id="@+id/button_to_my_recipe"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginLeft="@dimen/textMarginX"
+        android:layout_marginTop="@dimen/textMarginY15"
+        android:layout_marginRight="@dimen/textMarginX"
+        android:backgroundTint="@color/theme_yellow_dark"
+        android:text="@string/my_recipe"
+        android:textColor="#FFFFFF"
+        android:textColorLink="#00FFDE"
+        tools:ignore="TextContrastCheck" />
+
+    <Button
+        android:id="@+id/button_to_tags"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginLeft="@dimen/textMarginX"
+        android:layout_marginTop="@dimen/textMarginY15"
+        android:layout_marginRight="@dimen/textMarginX"
+        android:backgroundTint="@color/theme_yellow_dark"
+        android:text="@string/tags"
+        android:textColor="#FFFFFF"
+        android:textColorLink="#00FFDE"
+        tools:ignore="TextContrastCheck" />
+
+    <Button
+        android:id="@+id/button_to_favourites"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginLeft="@dimen/textMarginX"
+        android:layout_marginTop="@dimen/textMarginY15"
+        android:layout_marginRight="@dimen/textMarginX"
+        android:backgroundTint="@color/theme_yellow_dark"
+        android:text="@string/favourites"
+        android:textColor="#FFFFFF"
+        android:textColorLink="#00FFDE"
+        tools:ignore="TextContrastCheck" />
+
+    <Button
+        android:id="@+id/button_to_history"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginLeft="@dimen/textMarginX"
+        android:layout_marginTop="@dimen/textMarginY15"
+        android:layout_marginRight="@dimen/textMarginX"
+        android:backgroundTint="@color/theme_yellow_dark"
+        android:text="@string/history"
+        android:textColor="#FFFFFF"
+        android:textColorLink="#00FFDE"
+        tools:ignore="TextContrastCheck" />
+
+</LinearLayout>
