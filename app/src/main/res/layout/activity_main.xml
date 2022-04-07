@@ -1,9 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="203dp"
+        android:layout_marginTop="20dp"
+        android:contentDescription="@string/cookbook"
+        app:srcCompat="@drawable/cookbook" />
+
+    <TextView
+        android:id="@+id/textView_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/textMarginX"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="@dimen/textMarginX"
+        android:text="@string/email_address"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/editText_loginEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/textMarginX"
+        android:layout_marginTop="@dimen/textMarginY15"
+        android:layout_marginRight="@dimen/textMarginX"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/enter_your_email"
+        android:inputType="textEmailAddress"
+        android:textColorHint="#78909C"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/textView_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/textMarginX"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="@dimen/textMarginX"
+        android:text="@string/password"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/editText_loginPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/textMarginX"
+        android:layout_marginTop="@dimen/textMarginY15"
+        android:layout_marginRight="@dimen/textMarginX"
+        android:ems="10"
+        android:hint="@string/enter_your_password"
+        android:inputType="textPassword"
+        android:textColorHint="#78909C"
+        android:textSize="20sp"
+        android:autofillHints="" />
+
+    <TextView
+        android:id="@+id/textView_register"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/textMarginX"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="@dimen/textMarginX"
+        android:text="@string/create_new_account"
+        android:textAlignment="center"
+        android:textColor="#3070DC"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/button_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginLeft="@dimen/textMarginX"
+        android:layout_marginTop="@dimen/textMarginY15"
+        android:layout_marginRight="@dimen/textMarginX"
+        android:backgroundTint="@color/theme_yellow_dark"
+        android:text="@string/login"
+        android:textColor="#FFFFFF"
+        android:textColorLink="#00FFDE"
+        tools:ignore="TextContrastCheck" />
+
+</LinearLayout>
