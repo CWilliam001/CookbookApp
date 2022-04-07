@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
@@ -9,4 +9,15 @@
     <color name="white">#FFFFFFFF</color>
     <color name="theme_yellow_ffde59">#FFDE59</color>
     <color name="theme_yellow_dark">#F99413</color>
+
+    <!-- Bootstrap colour set -->
+    <color name="bs_primary">#0D6EFD</color>
+    <color name="bs_secondary">#6C757D</color>
+    <color name="bs_success">#198754</color>
+    <color name="bs_danger">#DC3545</color>
+    <color name="bs_warning">#FFC107</color>
+    <color name="bs_info">#0DCAF0</color>
+    <color name="bs_dark">#212529</color>
+    <color name="bs_light">#F8F9Fa</color>
+
 </resources>
