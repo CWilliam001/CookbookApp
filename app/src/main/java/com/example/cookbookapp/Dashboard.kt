@@ -1,13 +1,11 @@
 package com.example.cookbookapp
 
 import android.content.Intent
-import android.os.Binder
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.cookbookapp.account.Favourite
 import com.example.cookbookapp.account.History
 import com.example.cookbookapp.databinding.DashboardBinding
-import com.example.cookbookapp.model.Recipe
 import com.example.cookbookapp.model.Tag
 import com.example.cookbookapp.recipe.CreateRecipe
 import com.example.cookbookapp.recipe.SearchRecipe
