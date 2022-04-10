@@ -7,174 +7,158 @@
     android:orientation="vertical"
     tools:context=".recipe.EditRecipe">
 
-    <TextView
-        android:id="@+id/textView_recipeNameTitle"
+    <ScrollView
+        android:id="@+id/sv_create_recipe"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="10dp"
-        android:text="Name"
-        android:textColor="@color/black" />
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        android:layout_weight="1" >
 
-    <EditText
-        android:id="@+id/edit_recipeName"
-        style="@style/Widget.AppCompat.EditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:ems="10"
-        android:inputType="textLongMessage|textPersonName"
-        android:minHeight="48dp"
-        tools:ignore="SpeakableTextPresentCheck" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/recipeDescriptionTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:paddingTop="10px"
-        android:text="Description"
-        android:textColor="@color/black" />
+            <Button
+                android:id="@+id/back_button"
+                style="@style/theme_yellow_back_button"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="@string/back"
+                android:textAlignment="textStart"
+                tools:ignore="TextContrastCheck,TextContrastCheck" />
 
-    <EditText
-        android:id="@+id/edit_recipeDescription"
-        style="@style/Widget.AppCompat.EditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:ems="10"
-        android:inputType="textLongMessage|textPersonName"
-        android:minHeight="48dp"
-        tools:ignore="SpeakableTextPresentCheck" />
+            <TextView
+                android:id="@+id/textView_recipeNameTitle"
+                style="@style/textView"
+                android:text="@string/recipeName" />
 
-    <TextView
-        android:id="@+id/recipeNoteTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:paddingTop="10px"
-        android:text="Recipe Notes"
-        android:textColor="@color/black" />
+            <EditText
+                android:id="@+id/edit_recipeName"
+                style="@style/editText"
+                android:hint="@string/enter_recipe_name"
+                tools:ignore="SpeakableTextPresentCheck"
+                android:autofillHints="" />
 
-    <EditText
-        android:id="@+id/edit_recipeNotes"
-        style="@style/Widget.AppCompat.EditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:ems="10"
-        android:inputType="textLongMessage|textPersonName"
-        android:minHeight="48dp"
-        tools:ignore="SpeakableTextPresentCheck" />
+            <TextView
+                android:id="@+id/recipeDescriptionTitle"
+                style="@style/textView"
+                android:text="@string/description" />
 
-    <TextView
-        android:id="@+id/recipeTagsTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:paddingTop="10px"
-        android:text="Tags"
-        android:textColor="@color/black" />
+            <EditText
+                android:id="@+id/edit_recipeDescription"
+                style="@style/editText"
+                android:hint="@string/enter_recipe_description"
+                tools:ignore="SpeakableTextPresentCheck"
+                android:importantForAutofill="no" />
 
-    <Button
-        android:id="@+id/addNewTagsBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="100dp"
-        android:layout_marginRight="100dp"
-        android:backgroundTint="@color/theme_yellow_dark"
-        android:text="Add Tags" />
+            <TextView
+                android:id="@+id/recipeNoteTitle"
+                style="@style/textView"
+                android:text="@string/recipe_notes" />
 
-    <TextView
-        android:id="@+id/recipeImageTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:paddingTop="10px"
-        android:text="Photo"
-        android:textColor="@color/black" />
+            <EditText
+                android:id="@+id/edit_recipeNotes"
+                style="@style/editText"
+                android:hint="@string/enter_recipe_notes"
+                android:importantForAutofill="no"
+                tools:ignore="SpeakableTextPresentCheck" />
 
-    <Button
-        android:id="@+id/addNewImageBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="100dp"
-        android:layout_marginRight="100dp"
-        android:backgroundTint="@color/theme_yellow_dark"
-        android:text="Add Photo" />
+            <TextView
+                android:id="@+id/recipeTagsTitle"
+                style="@style/textView"
+                android:text="@string/tags" />
 
-    <TextView
-        android:id="@+id/recipeYoutubeLinkTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:paddingTop="10px"
-        android:text="Video Link"
-        android:textColor="@color/black" />
+            <ListView
+                android:id="@+id/listView_tags"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
 
-    <EditText
-        android:id="@+id/edit_recipeVideoLink"
-        style="@style/Widget.AppCompat.EditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:ems="10"
-        android:inputType="textLongMessage|textPersonName"
-        android:minHeight="48dp"
-        tools:ignore="SpeakableTextPresentCheck" />
+            <Button
+                android:id="@+id/addNewTagsBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="100dp"
+                android:layout_marginRight="100dp"
+                android:backgroundTint="@color/theme_yellow_dark"
+                android:text="@string/add_tags"
+                tools:ignore="TextContrastCheck" />
 
-    <TextView
-        android:id="@+id/recipeExtraInfoTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:paddingTop="10px"
-        android:text="Extra Information"
-        android:textColor="@color/black" />
+            <TextView
+                android:id="@+id/recipeImageTitle"
+                style="@style/textView"
+                android:text="@string/photo" />
 
-    <EditText
-        android:id="@+id/edit_recipeExtraInfo"
-        style="@style/Widget.AppCompat.EditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:ems="10"
-        android:inputType="textLongMessage|textPersonName"
-        android:minHeight="48dp"
-        tools:ignore="SpeakableTextPresentCheck" />
+            <Button
+                android:id="@+id/addNewImageBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="100dp"
+                android:layout_marginRight="100dp"
+                android:backgroundTint="@color/theme_yellow_dark"
+                android:text="@string/add_photo"
+                tools:ignore="TextContrastCheck" />
 
-    <TextView
-        android:id="@+id/recipeIngredientsTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="10dp"
-        android:text="Ingredients"
-        android:textColor="@color/black" />
+            <ImageView
+                android:id="@+id/imageView_recipe_photo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/recipe_photo"
+                android:src="@drawable/common_google_signin_btn_icon_dark_normal_background" />
 
-    <EditText
-        android:id="@+id/edit_addNewIngredients"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:minHeight="48dp"
-        tools:ignore="SpeakableTextPresentCheck" />
+            <TextView
+                android:id="@+id/recipeYoutubeLinkTitle"
+                style="@style/textView"
+                android:text="@string/video_link" />
+
+            <EditText
+                android:id="@+id/edit_recipeVideoLink"
+                style="@style/editText"
+                android:hint="@string/enter_video_link"
+                android:importantForAutofill="no"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <TextView
+                android:id="@+id/recipeExtraInfoTitle"
+                style="@style/textView"
+                android:text="@string/extra_information" />
+
+            <EditText
+                android:id="@+id/edit_recipeExtraInfo"
+                style="@style/editText"
+                android:hint="@string/enter_extra_information"
+                android:importantForAutofill="no"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <TextView
+                android:id="@+id/recipeIngredientsTitle"
+                style="@style/textView"
+                android:text="@string/ingredients" />
+
+            <EditText
+                android:id="@+id/edit_addNewIngredients"
+                style="@style/editText"
+                android:hint="@string/enter_ingredients"
+                android:importantForAutofill="no"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <Button
+                android:id="@+id/button_save"
+                style="@style/theme_yellow_button"
+                android:layout_marginBottom="@dimen/textMarginY20"
+                android:text="@string/submit"
+                tools:ignore="TextContrastCheck" />
+
+            <Button
+                android:id="@+id/button_delete"
+                style="@style/theme_yellow_small_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/delete_recipe" />
+
+        </LinearLayout>
+    </ScrollView>
 
 
 </LinearLayout>

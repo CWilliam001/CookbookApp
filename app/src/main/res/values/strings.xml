@@ -35,5 +35,13 @@
     <string name="back"><![CDATA[< Back]]></string>
     <string name="submit">Submit</string>
     <string name="recipe_photo">Recipe Photo</string>
+    <string name="link_content">Link Content</string>
+    <string name="extra_information_content">Extra Information Content</string>
+    <string name="ingredients_content">Ingredients Content</string>
+    <string name="notes_content">Notes Content</string>
+    <string name="notes">Notes</string>
+    <string name="description_content">Description Content</string>
+    <string name="recipe_name">Recipe Name</string>
+    <string name="delete_recipe">Delete Recipe</string>
 
 </resources>

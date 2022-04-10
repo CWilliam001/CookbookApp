@@ -6,12 +6,16 @@ import android.graphics.Bitmap
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.ListView
 import androidx.activity.result.contract.ActivityResultContracts
 import com.example.cookbookapp.R
 import com.example.cookbookapp.databinding.CreateRecipeBinding
 import com.example.cookbookapp.model.Tag
+import com.google.firebase.firestore.*
+import com.google.firebase.firestore.EventListener
 import com.google.firebase.storage.FirebaseStorage
 import java.text.SimpleDateFormat
 import java.util.*
@@ -20,6 +24,7 @@ import kotlin.collections.ArrayList
 class CreateRecipe : AppCompatActivity() {
 
     private lateinit var binding: CreateRecipeBinding
+    private lateinit var db: FirebaseFirestore
     private lateinit var recipe_photo : ImageView
     private lateinit var ImageUri : Uri
 
@@ -28,10 +33,27 @@ class CreateRecipe : AppCompatActivity() {
         binding = CreateRecipeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        var tagListView = binding.listViewTags as ListView
-
+        var listViewTags = binding.listViewTags
         var tagDataModel = ArrayList<Tag>()
-        // tagDataModel!!.add(Tag())
+
+        db = FirebaseFirestore.getInstance()
+        db.collection("Tag").addSnapshotListener(object : EventListener<QuerySnapshot> {
+            override fun onEvent(value: QuerySnapshot?, error: FirebaseFirestoreException?) {
+                if (error != null) {
+                    Log.e("Firebase error", error.message.toString())
+                    return
+                }
+
+                for (dc : DocumentChange in value?.documentChanges!!) {
+                    if (dc.type == DocumentChange.Type.ADDED) {
+                        tagDataModel!!.add(Tag(dc.document.id, dc.document.get("name").toString()))
+                    }
+                }
+            }
+        })
+
+        //adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_multiple_choice, tagDataModel)
+
 
         binding.addNewImageBtn.setOnClickListener{
             choosePhoto()
