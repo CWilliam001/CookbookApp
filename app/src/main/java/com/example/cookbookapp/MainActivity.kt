@@ -25,6 +25,10 @@ class MainActivity : AppCompatActivity() {
 
         binding.buttonLogin.setOnClickListener{
             // Call db to check auth
+
+            // If user is found redirect them to dashboard & set session
+
+            // Else display error message
         }
     }
 }

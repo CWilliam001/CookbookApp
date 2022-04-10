@@ -101,4 +101,18 @@
         android:textColorLink="#00FFDE"
         tools:ignore="TextContrastCheck" />
 
+    <Button
+        android:id="@+id/button_to_logout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginLeft="@dimen/textMarginX"
+        android:layout_marginTop="@dimen/textMarginY15"
+        android:layout_marginRight="@dimen/textMarginX"
+        android:backgroundTint="@color/theme_yellow_dark"
+        android:text="@string/logout"
+        android:textColor="#FFFFFF"
+        android:textColorLink="#00FFDE"
+        tools:ignore="TextContrastCheck" />
+
 </LinearLayout>

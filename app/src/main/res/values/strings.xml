@@ -16,5 +16,32 @@
     <string name="tags">Tags</string>
     <string name="favourites">Favourites</string>
     <string name="history">History</string>
+    <string name="logout">Logout</string>
+    <string name="recipeName">Recipe Name</string>
+    <string name="ingredients">Ingredients</string>
+    <string name="add_tags">Add Tags</string>
+    <string name="add_photo">Add Photo</string>
+    <string name="enter_recipe_name">Enter recipe name</string>
+    <string name="description">Description</string>
+    <string name="extra_information">Extra Information</string>
+    <string name="photo">Photo</string>
+    <string name="enter_recipe_description">Enter recipe description</string>
+    <string name="recipe_notes">Recipe Notes</string>
+    <string name="video_link">Video Link</string>
+    <string name="enter_recipe_notes">Enter recipe notes</string>
+    <string name="enter_video_link">Enter video link</string>
+    <string name="enter_ingredients">Enter ingredients</string>
+    <string name="enter_extra_information">Enter extra information</string>
+    <string name="back"><![CDATA[< Back]]></string>
+    <string name="submit">Submit</string>
+    <string name="recipe_photo">Recipe Photo</string>
+    <string name="link_content">Link Content</string>
+    <string name="extra_information_content">Extra Information Content</string>
+    <string name="ingredients_content">Ingredients Content</string>
+    <string name="notes_content">Notes Content</string>
+    <string name="notes">Notes</string>
+    <string name="description_content">Description Content</string>
+    <string name="recipe_name">Recipe Name</string>
+    <string name="delete_recipe">Delete Recipe</string>
 
 </resources>
