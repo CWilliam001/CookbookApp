@@ -7,54 +7,66 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <ImageView
-        android:id="@+id/cookbook_login"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="203dp"
-        android:layout_marginTop="@dimen/textMarginY20"
-        android:contentDescription="@string/cookbook"
-        app:srcCompat="@drawable/cookbook" />
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView_email"
-        android:text="@string/email_address"
-        style="@style/textView" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
 
-    <EditText
-        android:id="@+id/editText_loginEmail"
-        android:hint="@string/enter_your_email"
-        style="@style/editText"
-        android:autofillHints="" />
+            <ImageView
+                android:id="@+id/cookbook_login"
+                android:layout_width="match_parent"
+                android:layout_height="203dp"
+                android:layout_marginTop="@dimen/textMarginY20"
+                android:contentDescription="@string/cookbook"
+                app:srcCompat="@drawable/cookbook" />
 
-    <TextView
-        android:id="@+id/textView_password"
-        style="@style/textView"
-        android:text="@string/password" />
+            <TextView
+                android:id="@+id/textView_email"
+                android:text="@string/email_address"
+                style="@style/textView" />
 
-    <EditText
-        android:id="@+id/editText_loginPassword"
-        android:hint="@string/enter_your_password"
-        android:inputType="textPassword"
-        style="@style/editText"
-        android:autofillHints="" />
+            <EditText
+                android:id="@+id/editText_loginEmail"
+                android:hint="@string/enter_your_email"
+                style="@style/editText"
+                android:autofillHints="" />
 
-    <TextView
-        android:id="@+id/textView_create_new_account"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/textMarginX"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="@dimen/textMarginX"
-        android:text="@string/create_new_account"
-        android:textAlignment="center"
-        android:textColor="#3070DC"
-        android:textSize="20sp" />
+            <TextView
+                android:id="@+id/textView_password"
+                style="@style/textView"
+                android:text="@string/password" />
 
-    <Button
-        android:id="@+id/button_login"
-        style="@style/theme_yellow_button"
-        android:backgroundTint="@color/theme_yellow_dark"
-        android:text="@string/login"
-        tools:ignore="TextContrastCheck" />
+            <EditText
+                android:id="@+id/editText_loginPassword"
+                android:hint="@string/enter_your_password"
+                android:inputType="textPassword"
+                style="@style/editText"
+                android:autofillHints="" />
+
+            <TextView
+                android:id="@+id/textView_create_new_account"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/textMarginX"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="@dimen/textMarginX"
+                android:text="@string/create_new_account"
+                android:textAlignment="center"
+                android:textColor="#3070DC"
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/button_login"
+                style="@style/theme_yellow_button"
+                android:backgroundTint="@color/theme_yellow_dark"
+                android:text="@string/login"
+                tools:ignore="TextContrastCheck" />
+
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>
