@@ -6,6 +6,7 @@ import android.graphics.Bitmap
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.MediaStore
 import android.se.omapi.Session
 import android.util.Log
 import android.widget.ArrayAdapter
@@ -29,6 +30,8 @@ class CreateRecipe : AppCompatActivity() {
     private lateinit var db: FirebaseFirestore
     private lateinit var recipe_photo : ImageView
     private lateinit var ImageUri : Uri
+
+    private val pickImage = 100
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -86,14 +89,17 @@ class CreateRecipe : AppCompatActivity() {
     }
 
     private fun choosePhoto() {
-        val intent = Intent()
-        intent.type = "images/*"
-        intent.action = Intent.ACTION_GET_CONTENT
+//        val intent = Intent()
+//        intent.type = "images/*"
+//        intent.action = Intent.ACTION_GET_CONTENT
+//
+//        if (intent.resolveActivity(packageManager) != null) {
+//            getAction.launch((intent))
+//            recipe_photo = binding.imageViewRecipePhoto
+//        }
 
-        if (intent.resolveActivity(packageManager) != null) {
-            getAction.launch((intent))
-            recipe_photo = binding.imageViewRecipePhoto
-        }
+        val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
+        startActivityForResult(gallery, pickImage)
     }
 
     private fun uploadPhoto() : String {

@@ -1,9 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".account.EditProfile">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <Button
+                android:id="@+id/button_back_to_view_profile"
+                style="@style/theme_yellow_back_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/back"
+                tools:ignore="TextContrastCheck"
+                tools:layout_editor_absoluteX="131dp"
+                tools:layout_editor_absoluteY="14dp" />
+
+            <TextView
+                android:id="@+id/edit_first_name"
+                style="@style/textView"
+                android:text="@string/first_name" />
+
+            <EditText
+                android:id="@+id/editText_edit_acc_first_name"
+                style="@style/editText"
+                android:hint="@string/enter_your_first_name"
+                android:inputType="textPersonName"
+                android:autofillHints="" />
+
+            <TextView
+                android:id="@+id/textView_edit_last_name"
+                style="@style/textView"
+                android:text="@string/last_name" />
+
+            <EditText
+                android:id="@+id/editText_edit_acc_last_name"
+                style="@style/editText"
+                android:hint="@string/enter_your_last_name"
+                android:inputType="textPersonName"
+                android:autofillHints="" />
+
+            <TextView
+                android:id="@+id/textView_edit_email"
+                style="@style/textView"
+                android:text="@string/email" />
+
+            <EditText
+                android:id="@+id/editText_edit_acc_email"
+                style="@style/editText"
+                android:hint="@string/enter_your_email"
+                android:inputType="textEmailAddress"
+                android:autofillHints="" />
+
+            <TextView
+                android:id="@+id/textView_edit_password_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/textMarginX"
+                android:layout_marginTop="@dimen/textMarginY15"
+                android:layout_marginRight="@dimen/textMarginX"
+                android:text="@string/change_password_enter_the_old_password" />
+
+            <TextView
+                android:id="@+id/textView_old_password"
+                style="@style/textView"
+                android:text="@string/old_password" />
+
+            <EditText
+                android:id="@+id/editText_edit_acc_old_password"
+                style="@style/editText"
+                android:hint="@string/enter_your_password"
+                android:inputType="textPassword"
+                android:importantForAutofill="no" />
+
+            <TextView
+                android:id="@+id/textView_new_password"
+                style="@style/textView"
+                android:text="@string/new_password" />
+
+            <EditText
+                android:id="@+id/editText_edit_acc_new_password"
+                style="@style/editText"
+                android:hint="@string/enter_your_new_password"
+                android:inputType="textPassword"
+                android:importantForAutofill="no" />
+
+            <Button
+                android:id="@+id/button_save_profile_changes"
+                style="@style/theme_yellow_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/save"
+                tools:ignore="TextContrastCheck" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

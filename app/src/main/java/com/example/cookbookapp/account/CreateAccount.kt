@@ -84,8 +84,6 @@ class CreateAccount : AppCompatActivity() {
             val firebaseUser = firebaseAuth.currentUser
             val id = firebaseUser!!.uid
             val email = firebaseUser!!.email.toString()
-
-            val formatter = SimpleDateFormat("yyyy_MM_dd_HH_mm_ss", Locale.getDefault())
             val now = Date()
 
             val user = Users(id, email, firstName, lastName, password, now, "activate")
@@ -100,8 +98,5 @@ class CreateAccount : AppCompatActivity() {
                 e ->
                 Toast.makeText(this, "Sign up failed due to ${e.message}", Toast.LENGTH_SHORT).show()
             }
-    }
-
-    private fun insertUser() {
     }
 }

@@ -1,10 +1,12 @@
 package com.example.cookbookapp
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.cookbookapp.account.Favourite
 import com.example.cookbookapp.account.History
+import com.example.cookbookapp.account.ViewProfile
 import com.example.cookbookapp.databinding.DashboardBinding
 import com.example.cookbookapp.model.Tag
 import com.example.cookbookapp.model.TagList
@@ -16,6 +18,7 @@ class Dashboard : AppCompatActivity() {
 
     private lateinit var binding: DashboardBinding
     private lateinit var firebaseAuth: FirebaseAuth
+    private var uid = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,6 +26,10 @@ class Dashboard : AppCompatActivity() {
         setContentView(binding.root)
 
         firebaseAuth = FirebaseAuth.getInstance()
+
+        val sharedPreferences = getSharedPreferences("sharedUid", Context.MODE_PRIVATE)
+        val sharedUid = sharedPreferences.getString("StringUid", null)
+        binding.textViewDashboardId.text = "UID : $sharedUid"
 
         // Binding buttons
         binding.buttonToSearch.setOnClickListener{
@@ -33,6 +40,12 @@ class Dashboard : AppCompatActivity() {
 
         binding.buttonToAddRecipe.setOnClickListener{
             intent = Intent(this, CreateRecipe::class.java)
+            startActivity(intent)
+            finish()
+        }
+
+        binding.buttonToViewProfile.setOnClickListener{
+            intent = Intent(this, ViewProfile::class.java)
             startActivity(intent)
             finish()
         }
@@ -73,7 +86,7 @@ class Dashboard : AppCompatActivity() {
     private fun checkUser() {
         val firebaseUser = firebaseAuth.currentUser
         if(firebaseUser != null) {
-            binding.textViewDashboardId.setText(firebaseUser.uid)
+            // Nothing
         } else {
             startActivity(Intent(this, MainActivity::class.java))
             finish()

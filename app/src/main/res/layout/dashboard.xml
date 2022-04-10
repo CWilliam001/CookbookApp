@@ -64,6 +64,14 @@
                 tools:ignore="TextContrastCheck" />
 
             <Button
+                android:id="@+id/button_to_view_profile"
+                style="@style/theme_yellow_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/my_profile"
+                tools:ignore="TextContrastCheck" />
+
+            <Button
                 android:id="@+id/button_to_my_recipe"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -1,6 +1,7 @@
 package com.example.cookbookapp
 
 import android.app.ProgressDialog
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -64,9 +65,14 @@ class MainActivity : AppCompatActivity() {
     private fun firebaseLogin() {
         firebaseAuth.signInWithEmailAndPassword(email, password).addOnSuccessListener {
             val firebaseUser = firebaseAuth.currentUser
-            val email = firebaseUser!!.email
-            Toast.makeText(this, "Login successful", Toast.LENGTH_SHORT).show()
+            val uid = firebaseUser!!.uid
+            Toast.makeText(this, "UID: ${uid}, login successful", Toast.LENGTH_SHORT).show()
             startActivity(Intent(this, Dashboard::class.java))
+            val sharedPreferences = getSharedPreferences("sharedUid", Context.MODE_PRIVATE)
+            val editor = sharedPreferences.edit()
+            editor.apply{
+                putString("StringUid", uid)
+            }.apply()
             finish()
         }
             .addOnFailureListener{

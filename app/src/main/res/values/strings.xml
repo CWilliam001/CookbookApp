@@ -55,5 +55,11 @@
     <string name="enter_your_password_again">Enter your password again</string>
     <string name="re_enter_password">Re-enter Password</string>
     <string name="last_name">Last Name</string>
+    <string name="my_profile">My Profile</string>
+    <string name="enter_your_new_password">Enter your new password</string>
+    <string name="new_password">New Password</string>
+    <string name="old_password">Old Password</string>
+    <string name="save">Save</string>
+    <string name="change_password_enter_the_old_password">Change Password (Enter the old password)</string>
 
 </resources>

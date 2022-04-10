@@ -93,24 +93,24 @@
                 android:hint="@string/enter_your_password"
                 android:inputType="textPassword"
                 android:importantForAutofill="no" />
-<!--
-            <TextView
-                android:id="@+id/create_re_enter_password"
-                style="@style/textView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/re_enter_password" />
+            <!--
+                        <TextView
+                            android:id="@+id/create_re_enter_password"
+                            style="@style/textView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/re_enter_password" />
 
-            <EditText
-                android:id="@+id/editTextcreate_acc_re_enter_password"
-                style="@style/editText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="@string/enter_your_password_again"
-                android:inputType="textPassword"
-                android:importantForAutofill="no" />
--->
+                        <EditText
+                            android:id="@+id/editTextcreate_acc_re_enter_password"
+                            style="@style/editText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:ems="10"
+                            android:hint="@string/enter_your_password_again"
+                            android:inputType="textPassword"
+                            android:importantForAutofill="no" />
+            -->
             <Button
                 android:id="@+id/button_create_account"
                 style="@style/theme_yellow_button"
@@ -120,6 +120,5 @@
                 tools:ignore="TextContrastCheck" />
         </LinearLayout>
     </ScrollView>
-
 
 </LinearLayout>
