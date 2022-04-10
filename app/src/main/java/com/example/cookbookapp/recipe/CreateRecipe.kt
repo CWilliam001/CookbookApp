@@ -6,11 +6,13 @@ import android.graphics.Bitmap
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.se.omapi.Session
 import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.ListView
 import androidx.activity.result.contract.ActivityResultContracts
+import com.example.cookbookapp.Dashboard
 import com.example.cookbookapp.R
 import com.example.cookbookapp.databinding.CreateRecipeBinding
 import com.example.cookbookapp.model.Tag
@@ -54,6 +56,10 @@ class CreateRecipe : AppCompatActivity() {
 
         //adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_multiple_choice, tagDataModel)
 
+        binding.backButton.setOnClickListener{
+            startActivity(Intent(this, Dashboard::class.java))
+            finish()
+        }
 
         binding.addNewImageBtn.setOnClickListener{
             choosePhoto()
@@ -61,8 +67,16 @@ class CreateRecipe : AppCompatActivity() {
 
         binding.submit.setOnClickListener{
             // Bind all data to here
+            val name = binding.editRecipeName
+            val description = binding.editRecipeDescription
+            val notes = binding.editRecipeNotes
+            val ingredients = binding.editAddNewIngredients
+            val extraInformation = binding.editRecipeExtraInfo
+            val link = binding.editRecipeVideoLink
+            val status = "Active"
+//            val userId =
 
-            uploadPhoto()
+            val photo = uploadPhoto()
         }
     }
 
@@ -82,7 +96,7 @@ class CreateRecipe : AppCompatActivity() {
         }
     }
 
-    private fun uploadPhoto() {
+    private fun uploadPhoto() : String {
         val formatter = SimpleDateFormat("yyyy_MM_dd_HH_mm_ss", Locale.getDefault())
         val now = Date()
         val fileName = formatter.format(now)
@@ -91,6 +105,7 @@ class CreateRecipe : AppCompatActivity() {
         storageReference.putFile(ImageUri).addOnSuccessListener {
 
         }
+        return ImageUri.toString()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

@@ -43,5 +43,17 @@
     <string name="description_content">Description Content</string>
     <string name="recipe_name">Recipe Name</string>
     <string name="delete_recipe">Delete Recipe</string>
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+    <string name="delete_account">Delete Account</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="id">ID</string>
+    <string name="uid">UID</string>
+    <string name="first_name">First Name</string>
+    <string name="enter_your_first_name">Enter your first name</string>
+    <string name="enter_your_last_name">Enter your last name</string>
+    <string name="enter_your_password_again">Enter your password again</string>
+    <string name="re_enter_password">Re-enter Password</string>
+    <string name="last_name">Last Name</string>
 
 </resources>

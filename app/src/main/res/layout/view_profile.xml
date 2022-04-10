@@ -1,9 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".account.ViewProfile">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <Button
+        android:id="@+id/button_back_to_dashboard"
+        style="@style/theme_yellow_back_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/back"
+        tools:ignore="TextContrastCheck"
+        tools:layout_editor_absoluteX="12dp"
+        tools:layout_editor_absoluteY="69dp" />
+
+    <TextView
+        android:id="@+id/textView_view_profile_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/textMarginX"
+        android:layout_marginTop="@dimen/textMarginY15"
+        android:layout_marginRight="@dimen/textMarginX"
+        android:text="@string/id" />
+
+    <TextView
+        android:id="@+id/textView_view_profile_name"
+        style="@style/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/name" />
+
+    <TextView
+        android:id="@+id/textView_view_profile_email"
+        style="@style/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/email" />
+
+    <Button
+        android:id="@+id/button_to_edit_profile"
+        style="@style/theme_yellow_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/edit_profile"
+        tools:ignore="TextContrastCheck" />
+
+    <Button
+        android:id="@+id/button_delete_profile"
+        style="@style/theme_yellow_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/delete_account"
+        tools:ignore="TextContrastCheck" />
+
+</LinearLayout>

@@ -9,31 +9,37 @@ import com.example.cookbookapp.account.History
 import com.example.cookbookapp.databinding.DashboardBinding
 import com.example.cookbookapp.model.Recipe
 import com.example.cookbookapp.model.Tag
+import com.example.cookbookapp.recipe.CreateRecipe
+import com.example.cookbookapp.recipe.SearchRecipe
+import com.google.firebase.auth.FirebaseAuth
 
 class Dashboard : AppCompatActivity() {
 
     private lateinit var binding: DashboardBinding
+    private lateinit var firebaseAuth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DashboardBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        firebaseAuth = FirebaseAuth.getInstance()
+
         // Binding buttons
         binding.buttonToSearch.setOnClickListener{
-            intent = Intent(this, Recipe::class.java)
+            intent = Intent(this, SearchRecipe::class.java)
             startActivity(intent)
             finish()
         }
 
         binding.buttonToAddRecipe.setOnClickListener{
-            intent = Intent(this, Recipe::class.java)
+            intent = Intent(this, CreateRecipe::class.java)
             startActivity(intent)
             finish()
         }
 
         binding.buttonToMyRecipe.setOnClickListener{
-            intent = Intent(this, Recipe::class.java)
+            intent = Intent(this, MyRecipe::class.java)
             startActivity(intent)
             finish()
         }
@@ -57,9 +63,21 @@ class Dashboard : AppCompatActivity() {
         }
 
         binding.buttonToLogout.setOnClickListener{
-            // intent = Intent(this, AddRecipe::class.java)
-            // startActivity(intent)
-            // finish()
+            firebaseAuth.signOut()
+            checkUser()
+            intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+    }
+
+    private fun checkUser() {
+        val firebaseUser = firebaseAuth.currentUser
+        if(firebaseUser != null) {
+            binding.textViewDashboardId.setText(firebaseUser.uid)
+        } else {
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
         }
     }
 }

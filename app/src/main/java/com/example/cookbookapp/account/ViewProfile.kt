@@ -4,11 +4,13 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.cookbookapp.R
 import com.example.cookbookapp.databinding.CreateAccountBinding
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
 class ViewProfile : AppCompatActivity() {
 
     private lateinit var binding: CreateAccountBinding
+    private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var db: FirebaseFirestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,6 +23,9 @@ class ViewProfile : AppCompatActivity() {
         db.collection("User").whereEqualTo("id", intent.getStringExtra("id")).get().addOnSuccessListener {
             //binding.
         }
+    }
+
+    private fun checkUser() {
 
     }
 }
