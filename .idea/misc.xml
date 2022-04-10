@@ -3,11 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/TARUC/Degree Y2S3/Mobile App/CookbookApp/app/src/main/res/layout/create_account.xml" value="0.27291666666666664" />
         <entry key="..\:/TARUC/Degree Y2S3/Mobile App/CookbookApp/app/src/main/res/layout/create_recipe.xml" value="0.27291666666666664" />
         <entry key="..\:/TARUC/Degree Y2S3/Mobile App/CookbookApp/app/src/main/res/layout/edit_recipe.xml" value="0.27291666666666664" />
         <entry key="..\:/TARUC/Degree Y2S3/Mobile App/CookbookApp/app/src/main/res/layout/search_tag.xml" value="0.1" />
-        <entry key="..\:/TARUC/Degree Y2S3/Mobile App/CookbookApp/app/src/main/res/layout/tag_search.xml" value="0.19112627986348124" />
-        <entry key="..\:/TARUC/Degree Y2S3/Mobile App/CookbookApp/app/src/main/res/layout/tags_grid_layout.xml" value="0.19112627986348124" />
+        <entry key="..\:/TARUC/Degree Y2S3/Mobile App/CookbookApp/app/src/main/res/layout/tag_search.xml" value="0.33" />
+        <entry key="..\:/TARUC/Degree Y2S3/Mobile App/CookbookApp/app/src/main/res/layout/tags_grid_layout.xml" value="0.33" />
         <entry key="..\:/TARUC/Degree Y2S3/Mobile App/CookbookApp/app/src/main/res/layout/view_recipe.xml" value="0.27291666666666664" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/CookbookApp/app/src/main/res/layout/activity_main.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/ASUS/StudioProjects/CookbookApp/app/src/main/res/layout/activity_add_recipe.xml" value="0.25416666666666665" />

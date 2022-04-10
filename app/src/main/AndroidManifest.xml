@@ -31,9 +31,6 @@
             android:name=".recipe.EditRecipe"
             android:exported="false" />
         <activity
-            android:name=".recipe.AddRecipe"
-            android:exported="false" />
-        <activity
             android:name=".recipe.ViewRecipe"
             android:exported="false" />
         <activity
@@ -44,6 +41,9 @@
             android:exported="false" />
         <activity
             android:name=".account.CreateAccount"
+            android:exported="false" />
+        <activity
+            android:name=".model.TagList"
             android:exported="false" />
         <activity
             android:name=".Dashboard"

@@ -7,6 +7,7 @@ import com.example.cookbookapp.account.Favourite
 import com.example.cookbookapp.account.History
 import com.example.cookbookapp.databinding.DashboardBinding
 import com.example.cookbookapp.model.Tag
+import com.example.cookbookapp.model.TagList
 import com.example.cookbookapp.recipe.CreateRecipe
 import com.example.cookbookapp.recipe.SearchRecipe
 import com.google.firebase.auth.FirebaseAuth
@@ -43,7 +44,7 @@ class Dashboard : AppCompatActivity() {
         }
 
         binding.buttonToTags.setOnClickListener{
-            intent = Intent(this, Tag::class.java)
+            intent = Intent(this, TagList::class.java)
             startActivity(intent)
             finish()
         }
