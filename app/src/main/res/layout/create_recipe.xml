@@ -105,9 +105,10 @@
         <ImageView
             android:id="@+id/imageView_recipe_photo"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:contentDescription="@string/recipe_photo"
-            android:src="@drawable/common_google_signin_btn_icon_dark_normal_background" />
+            android:src="@drawable/common_google_signin_btn_icon_dark_normal_background"
+            android:visibility="gone" />
 
         <TextView
         android:id="@+id/recipeYoutubeLinkTitle"

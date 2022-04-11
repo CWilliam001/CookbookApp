@@ -1,6 +1,8 @@
 package com.example.cookbookapp.recipe
 
+import android.app.Activity
 import android.app.ProgressDialog
+import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
@@ -9,6 +11,7 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.se.omapi.Session
 import android.util.Log
+import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.ListView
@@ -20,6 +23,7 @@ import com.example.cookbookapp.model.Tag
 import com.google.firebase.firestore.*
 import com.google.firebase.firestore.EventListener
 import com.google.firebase.storage.FirebaseStorage
+import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -30,8 +34,6 @@ class CreateRecipe : AppCompatActivity() {
     private lateinit var db: FirebaseFirestore
     private lateinit var recipe_photo : ImageView
     private lateinit var ImageUri : Uri
-
-    private val pickImage = 100
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,8 +59,6 @@ class CreateRecipe : AppCompatActivity() {
             }
         })
 
-        //adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_multiple_choice, tagDataModel)
-
         binding.backButton.setOnClickListener{
             startActivity(Intent(this, Dashboard::class.java))
             finish()
@@ -77,7 +77,8 @@ class CreateRecipe : AppCompatActivity() {
             val extraInformation = binding.editRecipeExtraInfo
             val link = binding.editRecipeVideoLink
             val status = "Active"
-//            val userId =
+            val sharedPreferences = getSharedPreferences("sharedUid", Context.MODE_PRIVATE)
+            val sharedUid = sharedPreferences.getString("StringUid", null)
 
             val photo = uploadPhoto()
         }
@@ -89,37 +90,38 @@ class CreateRecipe : AppCompatActivity() {
     }
 
     private fun choosePhoto() {
-//        val intent = Intent()
-//        intent.type = "images/*"
-//        intent.action = Intent.ACTION_GET_CONTENT
-//
-//        if (intent.resolveActivity(packageManager) != null) {
-//            getAction.launch((intent))
-//            recipe_photo = binding.imageViewRecipePhoto
-//        }
+        val intent = Intent()
+        intent.type = "image/*"
+        intent.action = Intent.ACTION_GET_CONTENT
+//        val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
+//        startActivityForResult(gallery, pickImage)
 
-        val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
-        startActivityForResult(gallery, pickImage)
+//        val intent = Intent(Intent.ACTION_PICK)
+//        intent.type = "image/*"
+//        startActivityForResult(intent, IMAGE_PICK_CODE)
+        startActivityForResult(intent, 100)
     }
 
-    private fun uploadPhoto() : String {
+    private fun uploadPhoto() {
         val formatter = SimpleDateFormat("yyyy_MM_dd_HH_mm_ss", Locale.getDefault())
         val now = Date()
         val fileName = formatter.format(now)
         val storageReference = FirebaseStorage.getInstance().getReference("images/$fileName")
 
         storageReference.putFile(ImageUri).addOnSuccessListener {
-
+            binding.imageViewRecipePhoto.setImageURI(null)
         }
-        return ImageUri.toString()
+            .addOnFailureListener{
+
+            }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-
-        if (requestCode == 100 && resultCode == RESULT_OK){
+        if (resultCode == Activity.RESULT_OK && requestCode == 100) {
             ImageUri = data?.data!!
-            recipe_photo.setImageURI(ImageUri)
+            binding.imageViewRecipePhoto.visibility = View.VISIBLE
+            binding.imageViewRecipePhoto.setImageURI(ImageUri)
         }
     }
 }
