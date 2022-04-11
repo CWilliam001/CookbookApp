@@ -1,12 +1,18 @@
-package com.example.cookbookapp.model
+package com.example.cookbookapp.Tag
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Adapter
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.cookbookapp.Dashboard
 import com.example.cookbookapp.R
+import com.example.cookbookapp.Tag.AdapterTags
+import com.example.cookbookapp.account.ViewProfile
+import com.example.cookbookapp.model.Tag
 import com.google.firebase.firestore.*
 
 class TagList : AppCompatActivity() {
@@ -18,6 +24,13 @@ class TagList : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.tag_search)
+
+        val backBtn = findViewById<Button>(R.id.tagBackToDashboard)
+
+        backBtn.setOnClickListener {
+            startActivity(Intent(this, Dashboard::class.java))
+            finish()
+        }
 
         tagRecyclerView = findViewById(R.id.tagsRecyclerView)
         tagRecyclerView.layoutManager = GridLayoutManager(this, 2, RecyclerView.VERTICAL, false)
@@ -51,7 +64,6 @@ class TagList : AppCompatActivity() {
 
                 myTagAdapter.notifyDataSetChanged()
             }
-
         })
     }
 

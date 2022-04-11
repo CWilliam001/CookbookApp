@@ -5,16 +5,20 @@
     android:orientation="vertical"
     android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/searchRecipe"
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/searchBackToDashboard"
+        style="@style/theme_yellow_back_button"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="10dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:minHeight="48dp"
-        tools:ignore="SpeakableTextPresentCheck" />
+        android:text="@string/back"
+        tools:ignore="TextContrastCheck"
+        tools:layout_editor_absoluteX="131dp"
+        tools:layout_editor_absoluteY="14dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/searchRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:listitem="@layout/search_recipe_layout"/>
 
 </LinearLayout>

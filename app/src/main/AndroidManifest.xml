@@ -10,9 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CookbookApp">
         <activity
-            android:name=".Tag.SearchTag"
-            android:exported="false" />
-        <activity
             android:name=".MyRecipe"
             android:exported="false" />
         <activity
@@ -20,12 +17,6 @@
             android:exported="false" />
         <activity
             android:name=".recipe.SearchRecipe"
-            android:exported="false" />
-        <activity
-            android:name=".account.Favourite"
-            android:exported="false" />
-        <activity
-            android:name=".account.History"
             android:exported="false" />
         <activity
             android:name=".recipe.EditRecipe"
@@ -43,7 +34,7 @@
             android:name=".account.CreateAccount"
             android:exported="false" />
         <activity
-            android:name=".model.TagList"
+            android:name=".Tag.TagList"
             android:exported="false" />
         <activity
             android:name=".Dashboard"

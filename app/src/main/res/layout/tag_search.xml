@@ -5,20 +5,20 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tagSearchTitle"
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/tagBackToDashboard"
+        style="@style/theme_yellow_back_button"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="10dp"
-        android:text="Tags"
-        android:textColor="@color/black"
-        android:textSize="20sp" />
+        android:text="@string/back"
+        tools:ignore="TextContrastCheck"
+        tools:layout_editor_absoluteX="131dp"
+        tools:layout_editor_absoluteY="14dp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/tagsRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        tools:listitem="@layout/tags_grid_layout"/>
 
 </LinearLayout>

@@ -36,20 +36,6 @@
                 android:text="@string/uid" />
 
             <Button
-                android:id="@+id/button_to_search"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:layout_marginLeft="@dimen/textMarginX"
-                android:layout_marginTop="@dimen/textMarginY15"
-                android:layout_marginRight="@dimen/textMarginX"
-                android:backgroundTint="@color/theme_yellow_dark"
-                android:text="@string/search"
-                android:textColor="#FFFFFF"
-                android:textColorLink="#00FFDE"
-                tools:ignore="TextContrastCheck" />
-
-            <Button
                 android:id="@+id/button_to_add_recipe"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -95,34 +81,6 @@
                 android:layout_marginRight="@dimen/textMarginX"
                 android:backgroundTint="@color/theme_yellow_dark"
                 android:text="@string/tags"
-                android:textColor="#FFFFFF"
-                android:textColorLink="#00FFDE"
-                tools:ignore="TextContrastCheck" />
-
-            <Button
-                android:id="@+id/button_to_favourites"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:layout_marginLeft="@dimen/textMarginX"
-                android:layout_marginTop="@dimen/textMarginY15"
-                android:layout_marginRight="@dimen/textMarginX"
-                android:backgroundTint="@color/theme_yellow_dark"
-                android:text="@string/favourites"
-                android:textColor="#FFFFFF"
-                android:textColorLink="#00FFDE"
-                tools:ignore="TextContrastCheck" />
-
-            <Button
-                android:id="@+id/button_to_history"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:layout_marginLeft="@dimen/textMarginX"
-                android:layout_marginTop="@dimen/textMarginY15"
-                android:layout_marginRight="@dimen/textMarginX"
-                android:backgroundTint="@color/theme_yellow_dark"
-                android:text="@string/history"
                 android:textColor="#FFFFFF"
                 android:textColorLink="#00FFDE"
                 tools:ignore="TextContrastCheck" />
