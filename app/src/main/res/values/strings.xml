@@ -61,5 +61,7 @@
     <string name="old_password">Old Password</string>
     <string name="save">Save</string>
     <string name="change_password_enter_the_old_password">Change Password (Enter the old password)</string>
+    <string name="edit_recipe">Edit Recipe</string>
+    <string name="by_xxx">By XXX</string>
 
 </resources>

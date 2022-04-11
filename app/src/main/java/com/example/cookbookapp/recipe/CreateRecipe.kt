@@ -16,10 +16,16 @@ import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.ListView
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.cookbookapp.Dashboard
 import com.example.cookbookapp.R
+import com.example.cookbookapp.adapter.TagCheckboxRecyclerViewAdapter
 import com.example.cookbookapp.databinding.CreateRecipeBinding
+import com.example.cookbookapp.model.AdapterTags
+import com.example.cookbookapp.model.Recipe
 import com.example.cookbookapp.model.Tag
+import com.example.cookbookapp.model.TagData
 import com.google.firebase.firestore.*
 import com.google.firebase.firestore.EventListener
 import com.google.firebase.storage.FirebaseStorage
@@ -33,31 +39,27 @@ class CreateRecipe : AppCompatActivity() {
     private lateinit var binding: CreateRecipeBinding
     private lateinit var db: FirebaseFirestore
     private lateinit var recipe_photo : ImageView
+    private lateinit var tagAdapter: TagCheckboxRecyclerViewAdapter
     private lateinit var ImageUri : Uri
+    private lateinit var tagArrayList: ArrayList<Tag>
+    private lateinit var recyclerView_tag_checkbox: RecyclerView
+
+    private var tagList = ArrayList<TagData>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = CreateRecipeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        var listViewTags = binding.listViewTags
-        var tagDataModel = ArrayList<Tag>()
+//        setupData()
+        recyclerView_tag_checkbox = binding.recyclerViewTagCheckbox
+        recyclerView_tag_checkbox.layoutManager = GridLayoutManager(this, 1, RecyclerView.VERTICAL, false)
+        recyclerView_tag_checkbox.setHasFixedSize(true)
 
-        db = FirebaseFirestore.getInstance()
-        db.collection("Tag").addSnapshotListener(object : EventListener<QuerySnapshot> {
-            override fun onEvent(value: QuerySnapshot?, error: FirebaseFirestoreException?) {
-                if (error != null) {
-                    Log.e("Firebase error", error.message.toString())
-                    return
-                }
-
-                for (dc : DocumentChange in value?.documentChanges!!) {
-                    if (dc.type == DocumentChange.Type.ADDED) {
-                        tagDataModel!!.add(Tag(dc.document.id, dc.document.get("name").toString()))
-                    }
-                }
-            }
-        })
+        tagArrayList = arrayListOf<Tag>()
+        tagAdapter = TagCheckboxRecyclerViewAdapter(tagArrayList)
+        recyclerView_tag_checkbox.adapter = tagAdapter
+        getTagsData()
 
         binding.backButton.setOnClickListener{
             startActivity(Intent(this, Dashboard::class.java))
@@ -70,17 +72,22 @@ class CreateRecipe : AppCompatActivity() {
 
         binding.submit.setOnClickListener{
             // Bind all data to here
-            val name = binding.editRecipeName
-            val description = binding.editRecipeDescription
-            val notes = binding.editRecipeNotes
-            val ingredients = binding.editAddNewIngredients
-            val extraInformation = binding.editRecipeExtraInfo
-            val link = binding.editRecipeVideoLink
+            val name = binding.editRecipeName.toString().trim()
+            val description = binding.editRecipeDescription.toString().trim()
+            val notes = binding.editRecipeNotes.toString().trim()
+            val ingredients = binding.editAddNewIngredients.toString().trim()
+            val extraInformation = binding.editRecipeExtraInfo.toString().trim()
+            val link = binding.editRecipeVideoLink.toString().trim()
             val status = "Active"
             val sharedPreferences = getSharedPreferences("sharedUid", Context.MODE_PRIVATE)
-            val sharedUid = sharedPreferences.getString("StringUid", null)
-
+            val sharedUid = sharedPreferences.getString("StringUid", null).toString()
             val photo = uploadPhoto()
+
+            val recipe = Recipe("", description, extraInformation, ingredients, link, name, notes, photo, sharedUid)
+            db.collection("Recipe").document().set(recipe)
+
+            startActivity(Intent(this, Dashboard::class.java))
+            finish()
         }
     }
 
@@ -89,20 +96,39 @@ class CreateRecipe : AppCompatActivity() {
         recipe_photo.setImageBitmap((bitmap))
     }
 
+    private fun getTagsData() {
+        db = FirebaseFirestore.getInstance()
+
+        db.collection("Tag").addSnapshotListener(object : EventListener<QuerySnapshot> {
+            override fun onEvent(
+                value: QuerySnapshot?,
+                error: FirebaseFirestoreException?
+            ) {
+                if (error != null) {
+                    Log.e("Firestore error", error.message.toString())
+                    return
+                }
+
+                for (dc : DocumentChange in value?.documentChanges!!){
+                    if (dc.type == DocumentChange.Type.ADDED){
+                        tagArrayList.add(dc.document.toObject(Tag::class.java))
+                    }
+                }
+
+                tagAdapter.notifyDataSetChanged()
+            }
+
+        })
+    }
+
     private fun choosePhoto() {
         val intent = Intent()
         intent.type = "image/*"
         intent.action = Intent.ACTION_GET_CONTENT
-//        val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
-//        startActivityForResult(gallery, pickImage)
-
-//        val intent = Intent(Intent.ACTION_PICK)
-//        intent.type = "image/*"
-//        startActivityForResult(intent, IMAGE_PICK_CODE)
         startActivityForResult(intent, 100)
     }
 
-    private fun uploadPhoto() {
+    private fun uploadPhoto() : String {
         val formatter = SimpleDateFormat("yyyy_MM_dd_HH_mm_ss", Locale.getDefault())
         val now = Date()
         val fileName = formatter.format(now)
@@ -111,9 +137,10 @@ class CreateRecipe : AppCompatActivity() {
         storageReference.putFile(ImageUri).addOnSuccessListener {
             binding.imageViewRecipePhoto.setImageURI(null)
         }
-            .addOnFailureListener{
+        .addOnFailureListener{
 
-            }
+        }
+        return ImageUri.toString()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

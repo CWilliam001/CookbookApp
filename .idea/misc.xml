@@ -3,19 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/TARUC/Degree Y2S3/Mobile App/CookbookApp/app/src/main/res/drawable/ic_baseline_search.xml" value="0.2775" />
         <entry key="..\:/TARUC/Degree Y2S3/Mobile App/CookbookApp/app/src/main/res/layout/create_account.xml" value="0.27291666666666664" />
         <entry key="..\:/TARUC/Degree Y2S3/Mobile App/CookbookApp/app/src/main/res/layout/create_recipe.xml" value="0.27291666666666664" />
-        <entry key="..\:/TARUC/Degree Y2S3/Mobile App/CookbookApp/app/src/main/res/layout/dashboard.xml" value="0.27291666666666664" />
-        <entry key="..\:/TARUC/Degree Y2S3/Mobile App/CookbookApp/app/src/main/res/layout/edit_profile.xml" value="0.27291666666666664" />
         <entry key="..\:/TARUC/Degree Y2S3/Mobile App/CookbookApp/app/src/main/res/layout/edit_recipe.xml" value="0.27291666666666664" />
-        <entry key="..\:/TARUC/Degree Y2S3/Mobile App/CookbookApp/app/src/main/res/layout/search_recipe.xml" value="0.27291666666666664" />
-        <entry key="..\:/TARUC/Degree Y2S3/Mobile App/CookbookApp/app/src/main/res/layout/search_recipe_layout.xml" value="0.27291666666666664" />
         <entry key="..\:/TARUC/Degree Y2S3/Mobile App/CookbookApp/app/src/main/res/layout/search_tag.xml" value="0.1" />
         <entry key="..\:/TARUC/Degree Y2S3/Mobile App/CookbookApp/app/src/main/res/layout/tag_search.xml" value="0.33" />
         <entry key="..\:/TARUC/Degree Y2S3/Mobile App/CookbookApp/app/src/main/res/layout/tags_grid_layout.xml" value="0.33" />
         <entry key="..\:/TARUC/Degree Y2S3/Mobile App/CookbookApp/app/src/main/res/layout/view_recipe.xml" value="0.27291666666666664" />
-        <entry key="..\:/TARUC/Degree Y2S3/Mobile App/CookbookApp/app/src/main/res/menu/menu_item.xml" value="0.27291666666666664" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/CookbookApp/app/src/main/res/layout/activity_main.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/ASUS/StudioProjects/CookbookApp/app/src/main/res/layout/activity_add_recipe.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/ASUS/StudioProjects/CookbookApp/app/src/main/res/layout/activity_main.xml" value="0.4" />

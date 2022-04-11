@@ -29,13 +29,24 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" >
 
+            <TextView
+                android:id="@+id/textView_user_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/textMarginX"
+                android:layout_marginTop="@dimen/textMarginY15"
+                android:layout_marginRight="@dimen/textMarginX"
+                android:layout_marginBottom="@dimen/textMarginY15"
+                android:text="@string/by_xxx"
+                android:textAlignment="center" />
+
             <ImageView
                 android:id="@+id/imageView_view_recipe_photo"
                 android:layout_width="match_parent"
                 android:layout_height="183dp"
                 android:layout_marginBottom="@dimen/textMarginY20"
                 android:contentDescription="@string/recipe_photo"
-                app:srcCompat="@drawable/cookbook" />
+                tools:ignore="ImageContrastCheck" />
 
             <TextView
                 android:id="@+id/textView_view_description"
@@ -106,6 +117,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/link_content" />
+
+            <Button
+                android:id="@+id/button_to_edit_recipe"
+                style="@style/theme_yellow_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/textMarginY20"
+                android:text="@string/edit_recipe"
+                tools:ignore="TextContrastCheck" />
         </LinearLayout>
     </ScrollView>
 

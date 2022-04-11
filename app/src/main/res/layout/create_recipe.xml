@@ -70,22 +70,14 @@
             style="@style/textView"
             android:text="@string/tags" />
 
-        <ListView
-            android:id="@+id/listView_tags"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView_tag_checkbox"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_centerHorizontal="true"
-            android:choiceMode="multipleChoice"/>
-
-        <Button
-            android:id="@+id/addNewTagsBtn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="100dp"
-            android:layout_marginRight="100dp"
-            android:backgroundTint="@color/theme_yellow_dark"
-            android:text="@string/add_tags"
-            tools:ignore="TextContrastCheck" />
+            android:layout_height="240dp"
+            android:layout_marginLeft="@dimen/textMarginX"
+            android:layout_marginTop="@dimen/textMarginY15"
+            android:layout_marginRight="@dimen/textMarginX"
+            android:scrollbars="vertical" />
 
         <TextView
             android:id="@+id/recipeImageTitle"
@@ -94,6 +86,7 @@
 
         <Button
             android:id="@+id/addNewImageBtn"
+            style="@style/theme_yellow_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="100dp"
