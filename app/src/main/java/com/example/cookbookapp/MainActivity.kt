@@ -21,6 +21,7 @@ class MainActivity : AppCompatActivity() {
 
     private var email = ""
     private var password = ""
+    private var status = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,16 +65,27 @@ class MainActivity : AppCompatActivity() {
 
     private fun firebaseLogin() {
         firebaseAuth.signInWithEmailAndPassword(email, password).addOnSuccessListener {
+            
             val firebaseUser = firebaseAuth.currentUser
             val uid = firebaseUser!!.uid
-            Toast.makeText(this, "UID: ${uid}, login successful", Toast.LENGTH_SHORT).show()
-            startActivity(Intent(this, Dashboard::class.java))
-            val sharedPreferences = getSharedPreferences("sharedUid", Context.MODE_PRIVATE)
-            val editor = sharedPreferences.edit()
-            editor.apply{
-                putString("StringUid", uid)
-            }.apply()
-            finish()
+            db.collection("User").whereEqualTo("id", uid).get().addOnSuccessListener { 
+                for (document in it) {
+                    status = document.get("status").toString()
+                }
+                if (status.equals("activate")){
+                    Toast.makeText(this, "UID: ${uid}, login successful", Toast.LENGTH_SHORT).show()
+                    startActivity(Intent(this, Dashboard::class.java))
+                    val sharedPreferences = getSharedPreferences("sharedUid", Context.MODE_PRIVATE)
+                    val editor = sharedPreferences.edit()
+                    editor.apply{
+                        putString("StringUid", uid)
+                    }.apply()
+                    finish()
+                } else {
+                    Toast.makeText(this, "Your account has been deactivated", Toast.LENGTH_SHORT).show()
+                }
+            }
+            
         }
             .addOnFailureListener{
                 e ->

@@ -2,22 +2,37 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/button_view_recipe_back"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".recipe.ViewRecipe">
 
-    <TextView
-        android:id="@+id/textView_view_recipe_name"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/textMarginX"
-        android:layout_marginTop="@dimen/textMarginY20"
-        android:layout_marginEnd="@dimen/textMarginX"
-        android:layout_marginBottom="@dimen/textMarginY15"
-        android:text="@string/recipe_name"
-        android:textAlignment="center"
-        android:textSize="24sp" />
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/button_view_recipe_back_to_dashboard"
+            style="@style/theme_yellow_back_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/back"
+            tools:ignore="TextContrastCheck" />
+
+        <TextView
+            android:id="@+id/textView_view_recipe_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/textMarginX"
+            android:layout_marginTop="@dimen/textMarginY20"
+            android:layout_marginEnd="@dimen/textMarginX"
+            android:layout_marginBottom="@dimen/textMarginY15"
+            android:text="@string/recipe_name"
+            android:textAlignment="center"
+            android:textSize="24sp" />
+    </LinearLayout>
 
     <ScrollView
         android:id="@+id/scrollView_view_recipe"
@@ -27,7 +42,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/textView_user_name"
@@ -125,6 +140,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/textMarginY20"
                 android:text="@string/edit_recipe"
+                android:visibility="gone"
                 tools:ignore="TextContrastCheck" />
         </LinearLayout>
     </ScrollView>

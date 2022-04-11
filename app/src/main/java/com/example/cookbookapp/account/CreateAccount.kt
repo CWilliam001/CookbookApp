@@ -1,5 +1,6 @@
 package com.example.cookbookapp.account
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -91,6 +92,11 @@ class CreateAccount : AppCompatActivity() {
 
             // Redirect to dashboard
             startActivity(Intent(this, Dashboard::class.java))
+            val sharedPreferences = getSharedPreferences("sharedUid", Context.MODE_PRIVATE)
+            val editor = sharedPreferences.edit()
+            editor.apply{
+                putString("StringUid", id)
+            }.apply()
             finish()
             Toast.makeText(this, "Sign up successful", Toast.LENGTH_SHORT).show()
         }

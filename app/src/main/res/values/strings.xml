@@ -63,5 +63,8 @@
     <string name="change_password_enter_the_old_password">Change Password (Enter the old password)</string>
     <string name="edit_recipe">Edit Recipe</string>
     <string name="by_xxx">By XXX</string>
+    <string name="error_message">Error Message</string>
+    <string name="read_before_you_delete">Read before you delete</string>
+    <string name="delete_account_content">After you have delete your account your email will be removed from the database\nAre you sure you want to proceed?</string>
 
 </resources>

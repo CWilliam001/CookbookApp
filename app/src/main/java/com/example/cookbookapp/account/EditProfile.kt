@@ -28,6 +28,7 @@ class EditProfile : AppCompatActivity() {
     private var firstName = ""
     private var lastName = ""
     private var email = ""
+    private var currentEmail = ""
     private var oldPassword = ""
     private var password = ""
     private var newPassword = ""
@@ -39,10 +40,12 @@ class EditProfile : AppCompatActivity() {
         binding = EditProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val sharedPreferences = getSharedPreferences("sharedUid", Context.MODE_PRIVATE)
+        val sharedPreferences = getSharedPreferences("sharedUid", MODE_PRIVATE)
         val sharedUid = sharedPreferences.getString("StringUid", null)
         db = FirebaseFirestore.getInstance()
         firebaseAuth  = FirebaseAuth.getInstance()
+
+
 
         var registerDate = Date()
         var stringDate = ""
@@ -52,12 +55,11 @@ class EditProfile : AppCompatActivity() {
                 binding.editTextEditAccFirstName.setText(document.get("firstName").toString())
                 binding.editTextEditAccLastName.setText(document.get("lastName").toString())
                 binding.editTextEditAccEmail.setText(document.get("email").toString())
+                currentEmail = document.get("email").toString()
                 oldPassword = document.get("password").toString()
                 status = document.get("status").toString()
             }
         }
-
-
 
         binding.buttonBackToViewProfile.setOnClickListener{
             startActivity(Intent(this, ViewProfile::class.java))
@@ -83,29 +85,37 @@ class EditProfile : AppCompatActivity() {
                 var passwordChanges = checkPasswordChanges()
                 var pw = if (passwordChanges) password else oldPassword
                 val firebaseUser = firebaseAuth.currentUser
-                if (firebaseUser != null) {
-                    val credential = EmailAuthProvider.getCredential(email, pw)
 
-                    // Change email
-                    firebaseUser.reauthenticate(credential).addOnCompleteListener {
-                        if (it.isSuccessful) {
-                            if (passwordChanges) {
-                                // Change password
-                                firebaseUser!!.updatePassword(newPassword)
-                                    .addOnCompleteListener { task ->
-                                        if (task.isSuccessful) {
-                                            var user = Users(sharedUid.toString(), email, firstName, lastName, pw, registerDate, status)
-                                            db.collection("User").document("$sharedUid").set(user)
-                                            Toast.makeText(this, "User data has been modified", Toast.LENGTH_SHORT).show()
-                                        }
+                if (firebaseUser != null) {
+
+                    if (email != currentEmail) {
+                        val credential = EmailAuthProvider.getCredential(currentEmail, oldPassword)
+
+                        firebaseUser!!.reauthenticate(credential)
+                            .addOnCompleteListener {
+                                firebaseUser!!. updateEmail(email).addOnCompleteListener {
+                                }
+                            }
+                    }
+
+                    if (!passwordChanges) {
+                        val credential = EmailAuthProvider.getCredential(currentEmail, oldPassword)
+                        firebaseUser?.reauthenticate(credential)?.addOnCompleteListener{
+                            if (it.isSuccessful) {
+                                firebaseUser!!.updatePassword(newPassword).addOnCompleteListener{
+                                }
+                                    .addOnFailureListener{
+                                            e ->
+                                        Toast.makeText(this, "${e.message}", Toast.LENGTH_SHORT).show()
                                     }
-                            } else {
-                                var user = Users(sharedUid.toString(), email, firstName, lastName, pw, registerDate, status)
-                                db.collection("User").document("$sharedUid").set(user)
-                                Toast.makeText(this, "User data has been modified", Toast.LENGTH_SHORT).show()
                             }
                         }
+
                     }
+                    var user = Users(sharedUid.toString(), email, firstName, lastName, pw, registerDate, status)
+                    db.collection("User").document("$sharedUid").set(user)
+                    Toast.makeText(this, "User data has been modified", Toast.LENGTH_SHORT).show()
+
                     startActivity(Intent(this, MainActivity::class.java))
                     finish()
                 } else {
@@ -118,17 +128,12 @@ class EditProfile : AppCompatActivity() {
 
     private fun checkPasswordChanges() : Boolean {
         password = binding.editTextEditAccOldPassword.text.toString().trim()
-        if (password == null){
-            // Theres no changes in old password field
-            return false
-        } else {
-            // Theres a changes in old password field
-            if (oldPassword != password) {
-                binding.editTextEditAccOldPassword.error = "The old password is not correct"
-            } else if (TextUtils.isEmpty(newPassword)) {
-                binding.editTextEditAccNewPassword.error = "Please enter new password"
-            } else if (newPassword.length < 8) {
-                binding.editTextEditAccNewPassword.error = "Password length must at least 8 characters long"
+        if (binding.editTextEditAccOldPassword.text.isNotEmpty() && binding.editTextEditAccNewPassword.text.isNotEmpty()){
+            if (binding.editTextEditAccOldPassword.text.toString().equals(oldPassword)) {
+                return false
+            } else {
+                Toast.makeText(this, "Wrong password", Toast.LENGTH_SHORT).show()
+                return false
             }
         }
         return true

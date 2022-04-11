@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".account.DeleteAccount">
+
+    <TextView
+        android:id="@+id/textView_delete_account_title"
+        style="@style/textView_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/read_before_you_delete"
+        tools:layout_editor_absoluteX="215dp"
+        tools:layout_editor_absoluteY="119dp" />
+
+    <TextView
+        android:id="@+id/textView_delete_account_content"
+        style="@style/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/delete_account_content" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/textMarginY20"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/button_delete_account_no"
+            style="@style/theme_yellow_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@android:string/cancel"
+            tools:ignore="TextContrastCheck" />
+
+        <Button
+            android:id="@+id/button_delete_account_yes"
+            style="@style/theme_yellow_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@android:string/yes"
+            tools:ignore="TextContrastCheck" />
+    </LinearLayout>
+</LinearLayout>

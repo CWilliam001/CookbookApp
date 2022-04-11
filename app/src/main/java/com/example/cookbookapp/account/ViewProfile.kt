@@ -48,7 +48,8 @@ class ViewProfile : AppCompatActivity() {
         }
 
         binding.buttonDeleteProfile.setOnClickListener{
-            // Need to redirect to new activity or display a dialog box to user to press yes no
+            startActivity(Intent(this, DeleteAccount::class.java))
+            finish()
         }
 
     }

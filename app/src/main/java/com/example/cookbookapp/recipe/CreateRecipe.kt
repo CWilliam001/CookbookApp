@@ -5,16 +5,20 @@ import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
+import android.media.Image
 import android.net.Uri
+import android.opengl.Visibility
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import android.se.omapi.Session
+import android.text.TextUtils
 import android.util.Log
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.ListView
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -22,8 +26,8 @@ import com.example.cookbookapp.Dashboard
 import com.example.cookbookapp.R
 import com.example.cookbookapp.adapter.TagCheckboxRecyclerViewAdapter
 import com.example.cookbookapp.databinding.CreateRecipeBinding
-import com.example.cookbookapp.model.AdapterTags
 import com.example.cookbookapp.model.Recipe
+import com.example.cookbookapp.model.RecipeTag
 import com.example.cookbookapp.model.Tag
 import com.example.cookbookapp.model.TagData
 import com.google.firebase.firestore.*
@@ -45,13 +49,14 @@ class CreateRecipe : AppCompatActivity() {
     private lateinit var recyclerView_tag_checkbox: RecyclerView
 
     private var tagList = ArrayList<TagData>()
+    private var selectedList = ArrayList<Int>()
+    val REQUEST_CODE = 100
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = CreateRecipeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-//        setupData()
         recyclerView_tag_checkbox = binding.recyclerViewTagCheckbox
         recyclerView_tag_checkbox.layoutManager = GridLayoutManager(this, 1, RecyclerView.VERTICAL, false)
         recyclerView_tag_checkbox.setHasFixedSize(true)
@@ -72,22 +77,46 @@ class CreateRecipe : AppCompatActivity() {
 
         binding.submit.setOnClickListener{
             // Bind all data to here
-            val name = binding.editRecipeName.toString().trim()
-            val description = binding.editRecipeDescription.toString().trim()
-            val notes = binding.editRecipeNotes.toString().trim()
-            val ingredients = binding.editAddNewIngredients.toString().trim()
-            val extraInformation = binding.editRecipeExtraInfo.toString().trim()
-            val link = binding.editRecipeVideoLink.toString().trim()
+            val formatter = SimpleDateFormat("yyyy_MM_dd_HH_mm_ss", Locale.getDefault())
+            val now = Date()
+            val id = formatter.format(now)
+            val name = binding.createRecipeName.text.toString().trim()
+            val description = binding.createRecipeDescription.text.toString().trim()
+            val notes = binding.createRecipeNotes.text.toString().trim()
+            val link = binding.createRecipeVideoLink.text.toString().trim()
+            val extraInformation = binding.createRecipeExtraInfo.text.toString().trim()
+            val ingredients = binding.createIngredients.text.toString().trim()
             val status = "Active"
             val sharedPreferences = getSharedPreferences("sharedUid", Context.MODE_PRIVATE)
             val sharedUid = sharedPreferences.getString("StringUid", null).toString()
             val photo = uploadPhoto()
+            selectedList = tagAdapter.getSelectedCheckboxList()
 
-            val recipe = Recipe("", description, extraInformation, ingredients, link, name, notes, photo, sharedUid)
-            db.collection("Recipe").document().set(recipe)
+            if (TextUtils.isEmpty(name)) {
+                binding.createRecipeName.error = "Please enter the recipe name"
+            } else if (TextUtils.isEmpty(description)) {
+                binding.createRecipeDescription.error = "Please enter the recipe description"
+            } else if (TextUtils.isEmpty(notes)) {
+                binding.createRecipeNotes.error = "Please enter the recipe notes"
+            } else if (selectedList.isEmpty()) {
+                binding.textViewTagListErrorMessage.visibility = View.VISIBLE
+                binding.textViewTagListErrorMessage.error = "Please select at least one tag"
+            } else if (TextUtils.isEmpty(photo)) {
+                binding.textViewPhotoErrorMessage.visibility = View.VISIBLE
+                binding.textViewPhotoErrorMessage.error = "Please select a photo"
+            } else if (TextUtils.isEmpty(extraInformation)) {
+                binding.createRecipeExtraInfo.error = "Please enter the recipe steps"
+            } else if (TextUtils.isEmpty(ingredients)) {
+                binding.createIngredients.error = "Please enter the recipe ingredients"
+            } else {
+                val recipe = Recipe(id, description, extraInformation, ingredients, link, name, notes, photo, sharedUid, status, selectedList)
+                db.collection("Recipe").document(id).set(recipe)
 
-            startActivity(Intent(this, Dashboard::class.java))
-            finish()
+                var intent = Intent(this, ViewRecipe::class.java)
+                startActivity(intent)
+                intent.putExtra("id", id)
+                finish()
+            }
         }
     }
 
@@ -122,33 +151,31 @@ class CreateRecipe : AppCompatActivity() {
     }
 
     private fun choosePhoto() {
-        val intent = Intent()
+        val intent = Intent(Intent.ACTION_PICK)
         intent.type = "image/*"
-        intent.action = Intent.ACTION_GET_CONTENT
-        startActivityForResult(intent, 100)
+        startActivityForResult(intent, REQUEST_CODE)
     }
 
     private fun uploadPhoto() : String {
-        val formatter = SimpleDateFormat("yyyy_MM_dd_HH_mm_ss", Locale.getDefault())
-        val now = Date()
-        val fileName = formatter.format(now)
-        val storageReference = FirebaseStorage.getInstance().getReference("images/$fileName")
-
-        storageReference.putFile(ImageUri).addOnSuccessListener {
-            binding.imageViewRecipePhoto.setImageURI(null)
-        }
-        .addOnFailureListener{
-
+        if (ImageUri != null) {
+            var storageRef = FirebaseStorage.getInstance().reference.child("images/$ImageUri")
+            storageRef.putFile(ImageUri).addOnSuccessListener {
+                Toast.makeText(this, "Image upload successfully", Toast.LENGTH_SHORT).show()
+            }
+                .addOnFailureListener{
+                    e ->
+                    Toast.makeText(this, e.message, Toast.LENGTH_SHORT).show()
+                }
         }
         return ImageUri.toString()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == Activity.RESULT_OK && requestCode == 100) {
-            ImageUri = data?.data!!
+        if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE && data != null){
+            ImageUri = data.data!!
             binding.imageViewRecipePhoto.visibility = View.VISIBLE
-            binding.imageViewRecipePhoto.setImageURI(ImageUri)
+            binding.imageViewRecipePhoto.setImageURI(data.data) // handle chosen image
         }
     }
 }

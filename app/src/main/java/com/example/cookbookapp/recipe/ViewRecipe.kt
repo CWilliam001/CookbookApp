@@ -3,9 +3,11 @@ package com.example.cookbookapp.recipe
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.opengl.Visibility
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import com.example.cookbookapp.R
 import com.example.cookbookapp.databinding.ViewRecipeBinding
 import com.google.firebase.firestore.FieldPath
@@ -29,13 +31,11 @@ class ViewRecipe : AppCompatActivity() {
 
         db = FirebaseFirestore.getInstance()
 
-        db.collection("Recipe").whereEqualTo("name", intent.getStringExtra("name")).get().addOnSuccessListener {
+        db.collection("Recipe").whereEqualTo("id", intent.getStringExtra("id")).get().addOnSuccessListener {
             for (document in it) {
-                binding.textViewViewRecipeName.text = document.get("firstName").toString()
-                name = document.get("firstName").toString()
-                uid = document.get("userId").toString()
+                binding.textViewViewRecipeName.text = document.get("name").toString()
                 binding.imageViewViewRecipePhoto.setImageURI(Uri.parse(document.get("photo").toString()))
-                binding.textViewDescriptionContent.text = document.get("descrription").toString()
+                binding.textViewDescriptionContent.text = document.get("description").toString()
                 binding.textViewNotesContent.text = document.get("notes").toString()
                 binding.textViewIngredientsContent.text = document.get("ingredients").toString()
                 binding.textViewExtraInformationContent.text = document.get("extraInformation").toString()
@@ -53,11 +53,17 @@ class ViewRecipe : AppCompatActivity() {
             }
         }
 
-        binding.buttonToEditRecipe.setOnClickListener{
-            val intent = Intent(this, EditRecipe::class.java)
-            intent.putExtra("name", name)
-            startActivity(intent)
+        if (uid == sharedUid) {
+            // Display the button if the recipe owner has visit this page
+            binding.buttonToEditRecipe.visibility = View.VISIBLE
+        }
 
+        binding.buttonToEditRecipe.setOnClickListener{
+            if (uid == sharedUid) {
+                val intent = Intent(this, EditRecipe::class.java)
+                intent.putExtra("name", name)
+                startActivity(intent)
+            }
         }
     }
 }
