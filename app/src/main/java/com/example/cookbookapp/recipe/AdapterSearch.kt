@@ -6,11 +6,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cookbookapp.R
-import com.example.cookbookapp.recipe.AdapterSearch
 import com.example.cookbookapp.model.Recipe
 
-class AdapterSearch(private val searchList: ArrayList<Recipe>) :
-    RecyclerView.Adapter<AdapterSearch.ViewHolder>() {
+class AdapterSearch(private val searchList: ArrayList<Recipe>, val itemClickHandler2:(Int) -> Unit) : RecyclerView.Adapter<AdapterSearch.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView = LayoutInflater.from(parent.context)
@@ -22,6 +20,11 @@ class AdapterSearch(private val searchList: ArrayList<Recipe>) :
         val currentRecipe = searchList[position]
         holder.searchRecipeName.text = currentRecipe.name
         holder.searchRecipeDescription.text = currentRecipe.description
+        holder.searchRecipeID.text = currentRecipe.id
+
+        holder.itemView.setOnClickListener {
+            itemClickHandler2.invoke(position)
+        }
     }
 
     override fun getItemCount(): Int {
@@ -29,9 +32,9 @@ class AdapterSearch(private val searchList: ArrayList<Recipe>) :
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val searchRecipeName: TextView = itemView.findViewById(R.id.searchListRecipeName)
-        val searchRecipeDescription: TextView =
-            itemView.findViewById(R.id.searchListRecipeDescription)
+        val searchRecipeName: TextView = itemView.findViewById(R.id.tagListRecipeName)
+        val searchRecipeDescription: TextView = itemView.findViewById(R.id.tagListRecipeDescription)
+        val searchRecipeID: TextView = itemView.findViewById(R.id.searchRecipeID)
     }
 
 }

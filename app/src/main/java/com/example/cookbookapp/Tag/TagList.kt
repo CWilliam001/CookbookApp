@@ -37,7 +37,7 @@ class TagList : AppCompatActivity() {
         tagRecyclerView.setHasFixedSize(true)
 
         tagArrayList = arrayListOf<Tag>()
-        myTagAdapter = AdapterTags(tagArrayList)
+        myTagAdapter = AdapterTags(tagArrayList, this@TagList::onItemClickHandler)
         tagRecyclerView.adapter = myTagAdapter
         getTagsData()
 
@@ -65,6 +65,14 @@ class TagList : AppCompatActivity() {
                 myTagAdapter.notifyDataSetChanged()
             }
         })
+    }
+
+    private fun onItemClickHandler(position:Int){
+        Log.d("******","${position}");
+        //here you can start a new intent to open a new activity on click of item
+        val intent = Intent(this, TagDetailList::class.java)
+        intent.putExtra("id", tagArrayList.get(position).id)
+        startActivity(intent)
     }
 
 }

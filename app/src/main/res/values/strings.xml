@@ -42,7 +42,6 @@
     <string name="notes">Notes</string>
     <string name="description_content">Description Content</string>
     <string name="recipe_name">Recipe Name</string>
-    <string name="delete_recipe">Delete Recipe</string>
     <string name="name">Name</string>
     <string name="email">Email</string>
     <string name="delete_account">Delete Account</string>

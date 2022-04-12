@@ -49,7 +49,7 @@ class SearchRecipe : AppCompatActivity() {
 
         searchArrayList = arrayListOf<Recipe>()
         tempArrayList = arrayListOf<Recipe>()
-        mySearchAdapter = AdapterSearch(tempArrayList)
+        mySearchAdapter = AdapterSearch(tempArrayList, this@SearchRecipe::onItemClickHandler2)
         searchRecyclerView.adapter = mySearchAdapter
         getRecipeListData()
     }
@@ -114,5 +114,13 @@ class SearchRecipe : AppCompatActivity() {
                 searchRecyclerView.adapter!!.notifyDataSetChanged()
             }
         })
+    }
+
+    private fun onItemClickHandler2(position:Int){
+        Log.d("******","${position}");
+        //here you can start a new intent to open a new activity on click of item
+        val intent = Intent(this, ViewRecipe::class.java)
+        intent.putExtra("id", tempArrayList.get(position).id)
+        startActivity(intent)
     }
 }
