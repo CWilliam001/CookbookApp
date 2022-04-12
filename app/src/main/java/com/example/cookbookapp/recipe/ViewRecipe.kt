@@ -29,7 +29,7 @@ class ViewRecipe : AppCompatActivity() {
 //    private var lastName = ""
     private var uid = ""
     private var photo = ""
-//    private var tagList = ArrayList<Int>()
+    private var tagList = ArrayList<Int>()
 //    private var tagNameList = ArrayList<String>()
 //    private var tagContent = ArrayList<String>()
 //    private var tagString = ""
@@ -48,14 +48,12 @@ class ViewRecipe : AppCompatActivity() {
         recipeId = intent.getStringExtra("id").toString()
 
         val query: Query = db.collection("Recipe")
-        val query1 : Query = db.collection("User")
-        val query2: Query = db.collection("Tag")
 
         // Get Recipe Data
         query.whereEqualTo("id", recipeId).get().addOnSuccessListener {
             for (document in it) {
                 binding.textViewViewRecipeName.text = document.get("name").toString()
-                photo = document.get("photo").toString()
+
                 binding.textViewDescriptionContent.text = document.get("description").toString()
                 binding.textViewNotesContent.text = document.get("notes").toString()
                 binding.textViewIngredientsContent.text = document.get("ingredients").toString()
@@ -68,75 +66,38 @@ class ViewRecipe : AppCompatActivity() {
                 }
                 uid = document.get("userID").toString()
                 binding.textViewUserName.text = "By User ID: $uid"
-//                tagList = document.get("tagList") as ArrayList<Int>
+                tagList = document.get("tagList") as ArrayList<Int>
+                if(tagList.isEmpty()) {
+                    binding.textViewTags.visibility = View.GONE
+                    binding.textViewTagsContent.visibility = View.GONE
+                } else {
+                    binding.textViewTagsContent.text = tagList.toString()
+                }
                 if (uid == sharedUid) {
                     // Display the button if the recipe owner has visit this page
                     binding.buttonToEditRecipe.visibility = View.VISIBLE
                 }
 
-//                // Get User Data
-//                query1.whereEqualTo("id", uid).get().addOnSuccessListener {
-//                    for (document in it) {
-//                        firstName = document.get("firstName").toString()
-//                        lastName = document.get("lastName").toString()
-//                        Toast.makeText(this, "$firstName data loaded", Toast.LENGTH_SHORT).show()
-//                    }
-//                }
-//                    .addOnFailureListener{
-//                            e ->
-//                        Toast.makeText(this, "User Firestore Error : ${e.message}", Toast.LENGTH_SHORT).show()
-//                    }
-//                binding.textViewUserName.text = "By $firstName"
+                // Get image from Storage
+                photo = document.get("photo").toString()
+                val storageRef = FirebaseStorage.getInstance().reference.child("images/$photo")
+                val localFile = File.createTempFile("temp", "jpg")
+                storageRef.getFile(localFile).addOnSuccessListener {
+                    val bitmap = BitmapFactory.decodeFile(localFile.absolutePath)
+                    binding.imageViewViewRecipePhoto.visibility = View.VISIBLE
+                    binding.imageViewViewRecipePhoto.setImageBitmap(bitmap)
+                    Log.e("Error 2", it.toString())
 
-//                // Get a list of Tag
-//                query2.addSnapshotListener(object : EventListener<QuerySnapshot> {
-//                    override fun onEvent(
-//                        value: QuerySnapshot?,
-//                        error: FirebaseFirestoreException?
-//                    ) {
-//                        if (error != null) {
-//                            Log.e("Firestore error", error.message.toString())
-//                            return
-//                        }
-//
-//                        for (dc : DocumentChange in value?.documentChanges!!){
-//                            if (dc.type == DocumentChange.Type.ADDED){
-//                                tagNameList.add(dc.document.get("name").toString())
-//                            }
-//                        }
-//                    }
-//                })
-
-//                for (i in 1..tagNameList.size) {
-//                    if (tagList[i] == i) {
-//                        tagContent.add(tagNameList[i])
-//                    }
-//                }
-//
-//                for(i in 0..tagContent.size) {
-//                    tagString += "$tagContent"
-//                    if (i <= tagContent.size) {
-//                        tagString += ", "
-//                    }
-//                }
+                }
+                    .addOnFailureListener{
+                        Log.e("Error", it.toString())
+                        Toast.makeText(this, "Error : ${it.message}", Toast.LENGTH_SHORT).show()
+                    }
             }
         }
             .addOnFailureListener{
                 e ->
                 Log.e("Firestore Error: ", e.message.toString())
-            }
-
-        // Get image from Storage
-        val storageRef = FirebaseStorage.getInstance().reference.child("images/media/$photo")
-        val localFile = File.createTempFile("tempImage", "jpg")
-        storageRef.getFile(localFile).addOnSuccessListener {
-            val bitmap = BitmapFactory.decodeFile(localFile.absolutePath)
-            binding.imageViewViewRecipePhoto.visibility = View.VISIBLE
-            binding.imageViewViewRecipePhoto.setImageBitmap(bitmap)
-        }
-            .addOnFailureListener{
-                e ->
-                Toast.makeText(this, "Storage error : ${e.message}", Toast.LENGTH_SHORT).show()
             }
 
         binding.buttonViewRecipeBackToDashboard.setOnClickListener{

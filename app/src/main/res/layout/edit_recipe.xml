@@ -70,42 +70,60 @@
                 style="@style/textView"
                 android:text="@string/tags" />
 
-            <ListView
-                android:id="@+id/listView_tags"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-            <Button
-                android:id="@+id/addNewTagsBtn"
+            <TextView
+                android:id="@+id/textView_tag_list_error_message"
+                style="@style/textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="100dp"
-                android:layout_marginRight="100dp"
-                android:backgroundTint="@color/theme_yellow_dark"
-                android:text="@string/add_tags"
-                tools:ignore="TextContrastCheck" />
+                android:text="@string/error_message"
+                android:textColor="@color/bs_danger"
+                android:textSize="12sp"
+                android:visibility="gone" />
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView_edit_tag_checkbox"
+                android:layout_width="match_parent"
+                android:layout_height="240dp"
+                android:layout_marginLeft="@dimen/textMarginX"
+                android:layout_marginTop="@dimen/textMarginY15"
+                android:layout_marginRight="@dimen/textMarginX"
+                android:scrollbars="vertical" />
 
             <TextView
                 android:id="@+id/recipeImageTitle"
                 style="@style/textView"
                 android:text="@string/photo" />
 
+            <TextView
+                android:id="@+id/textView_photo_error_message"
+                style="@style/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/error_message"
+                android:textColor="@color/bs_danger"
+                android:textSize="12sp"
+                android:visibility="gone" />
+
             <Button
-                android:id="@+id/addNewImageBtn"
+                android:id="@+id/editImageBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="100dp"
                 android:layout_marginRight="100dp"
                 android:backgroundTint="@color/theme_yellow_dark"
-                android:text="@string/add_photo"
+                android:text="@string/change_photo"
                 tools:ignore="TextContrastCheck" />
 
             <ImageView
                 android:id="@+id/imageView_recipe_photo"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/textMarginX"
+                android:layout_marginRight="@dimen/textMarginX"
                 android:contentDescription="@string/recipe_photo"
-                android:src="@drawable/common_google_signin_btn_icon_dark_normal_background" />
+                android:src="@drawable/common_google_signin_btn_icon_dark_normal_background"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/recipeYoutubeLinkTitle"
@@ -152,7 +170,7 @@
 
             <Button
                 android:id="@+id/button_delete"
-                style="@style/theme_yellow_small_btn"
+                style="@style/theme_yellow_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/delete_recipe" />

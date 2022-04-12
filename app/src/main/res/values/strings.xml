@@ -67,5 +67,9 @@
     <string name="read_before_you_delete">Read before you delete</string>
     <string name="delete_account_content">After you have delete your account your email will be removed from the database\nAre you sure you want to proceed?</string>
     <string name="tags_content">Tags Content</string>
+    <string name="change_photo">Change Photo</string>
+    <string name="are_you_sure_you_want_to_delete_the_recipe_nafter_you_delete_the_recipe_it_will_not_be_recovered">Are you sure you want to delete the recipe.\nAfter you delete the recipe it will not be recovered</string>
+    <string name="delete_recipe">Delete Recipe</string>
+    <string name="string_delete_recipe">Delete Recipe</string>
 
 </resources>

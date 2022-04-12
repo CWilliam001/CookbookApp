@@ -89,34 +89,44 @@ class CreateRecipe : AppCompatActivity() {
             val status = "Active"
             val sharedPreferences = getSharedPreferences("sharedUid", Context.MODE_PRIVATE)
             val sharedUid = sharedPreferences.getString("StringUid", null).toString()
-            val photo = uploadPhoto()
+//            val photo = uploadPhoto()
             selectedList = tagAdapter.getSelectedCheckboxList()
 
-            if (TextUtils.isEmpty(name)) {
-                binding.createRecipeName.error = "Please enter the recipe name"
-            } else if (TextUtils.isEmpty(description)) {
-                binding.createRecipeDescription.error = "Please enter the recipe description"
-            } else if (TextUtils.isEmpty(notes)) {
-                binding.createRecipeNotes.error = "Please enter the recipe notes"
-            } else if (selectedList.isEmpty()) {
-                binding.textViewTagListErrorMessage.visibility = View.VISIBLE
-                binding.textViewTagListErrorMessage.error = "Please select at least one tag"
-            } else if (TextUtils.isEmpty(photo)) {
-                binding.textViewPhotoErrorMessage.visibility = View.VISIBLE
-                binding.textViewPhotoErrorMessage.error = "Please select a photo"
-            } else if (TextUtils.isEmpty(extraInformation)) {
-                binding.createRecipeExtraInfo.error = "Please enter the recipe steps"
-            } else if (TextUtils.isEmpty(ingredients)) {
-                binding.createIngredients.error = "Please enter the recipe ingredients"
-            } else {
-                val recipe = Recipe(id, description, extraInformation, ingredients, link, name, notes, photo, sharedUid, status, selectedList)
-                db.collection("Recipe").document(id).set(recipe)
+            val fileName = formatter.format(now) + ".jpg"
+            val storageReference = FirebaseStorage.getInstance().getReference("images/$fileName")
 
-                var intent = Intent(this, ViewRecipe::class.java)
-                intent.putExtra("id", id)
-                startActivity(intent)
-                finish()
+            storageReference.putFile(ImageUri).addOnSuccessListener {
+
+                if (TextUtils.isEmpty(name)) {
+                    binding.createRecipeName.error = "Please enter the recipe name"
+                } else if (TextUtils.isEmpty(description)) {
+                    binding.createRecipeDescription.error = "Please enter the recipe description"
+                } else if (TextUtils.isEmpty(notes)) {
+                    binding.createRecipeNotes.error = "Please enter the recipe notes"
+                } else if (selectedList.isEmpty()) {
+                    binding.textViewTagListErrorMessage.visibility = View.VISIBLE
+                    binding.textViewTagListErrorMessage.error = "Please select at least one tag"
+                } else if (TextUtils.isEmpty(fileName)) {
+                    binding.textViewPhotoErrorMessage.visibility = View.VISIBLE
+                    binding.textViewPhotoErrorMessage.error = "Please select a photo"
+                } else if (TextUtils.isEmpty(extraInformation)) {
+                    binding.createRecipeExtraInfo.error = "Please enter the recipe steps"
+                } else if (TextUtils.isEmpty(ingredients)) {
+                    binding.createIngredients.error = "Please enter the recipe ingredients"
+                } else {
+
+                    val recipe = Recipe(id, description, extraInformation, ingredients, link, name, notes, fileName, sharedUid, status, selectedList)
+                    db.collection("Recipe").document(id).set(recipe)
+
+                    var intent = Intent(this, ViewRecipe::class.java)
+                    intent.putExtra("id", id)
+                    startActivity(intent)
+                    finish()
+                }
             }
+                .addOnFailureListener{
+                    Toast.makeText(this, "Upload Image Error ${it.message}", Toast.LENGTH_SHORT).show()
+                }
         }
     }
 
@@ -154,20 +164,6 @@ class CreateRecipe : AppCompatActivity() {
         val intent = Intent(Intent.ACTION_PICK)
         intent.type = "image/*"
         startActivityForResult(intent, REQUEST_CODE)
-    }
-
-    private fun uploadPhoto() : String {
-        if (ImageUri != null) {
-            var storageRef = FirebaseStorage.getInstance().reference.child("images/$ImageUri")
-            storageRef.putFile(ImageUri).addOnSuccessListener {
-                Toast.makeText(this, "Image upload successfully", Toast.LENGTH_SHORT).show()
-            }
-                .addOnFailureListener{
-                    e ->
-                    Toast.makeText(this, e.message, Toast.LENGTH_SHORT).show()
-                }
-        }
-        return ImageUri.toString().substringAfterLast("/")
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

@@ -54,7 +54,6 @@
             tools:ignore="SpeakableTextPresentCheck"
             android:importantForAutofill="no" />
 
-
         <TextView
             android:id="@+id/recipeNoteTitle"
             style="@style/textView"

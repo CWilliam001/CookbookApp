@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CookbookApp">
         <activity
+            android:name=".recipe.DeleteRecipe"
+            android:exported="false" />
+        <activity
             android:name=".account.DeleteAccount"
             android:exported="false" />
         <activity
