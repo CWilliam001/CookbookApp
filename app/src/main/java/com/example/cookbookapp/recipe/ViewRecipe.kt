@@ -31,8 +31,8 @@ class ViewRecipe : AppCompatActivity() {
     private var photo = ""
     private var link = ""
     private var tagList = ArrayList<Int>()
-//    private var tagNameList = ArrayList<String>()
-//    private var tagContent = ArrayList<String>()
+    private var tagObjList = ArrayList<Tag>()
+    private var tagContent = ArrayList<String>()
 //    private var tagString = ""
 
     @SuppressLint("SetTextI18n")
@@ -102,11 +102,6 @@ class ViewRecipe : AppCompatActivity() {
                 Log.e("Firestore Error: ", e.message.toString())
             }
 
-        binding.buttonViewRecipeBackToDashboard.setOnClickListener{
-            startActivity(Intent(this, Dashboard::class.java))
-            finish()
-        }
-
         binding.textViewLinkContent.setOnClickListener{
             intent = Intent(Intent.ACTION_VIEW, Uri.parse("$link"))
             startActivity(intent)
@@ -120,4 +115,5 @@ class ViewRecipe : AppCompatActivity() {
             }
         }
     }
+
 }
