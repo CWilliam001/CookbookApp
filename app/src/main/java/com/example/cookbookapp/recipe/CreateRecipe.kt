@@ -113,8 +113,8 @@ class CreateRecipe : AppCompatActivity() {
                 db.collection("Recipe").document(id).set(recipe)
 
                 var intent = Intent(this, ViewRecipe::class.java)
-                startActivity(intent)
                 intent.putExtra("id", id)
+                startActivity(intent)
                 finish()
             }
         }
@@ -167,7 +167,7 @@ class CreateRecipe : AppCompatActivity() {
                     Toast.makeText(this, e.message, Toast.LENGTH_SHORT).show()
                 }
         }
-        return ImageUri.toString()
+        return ImageUri.toString().substringAfterLast("/")
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

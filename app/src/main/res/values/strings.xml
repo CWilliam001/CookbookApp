@@ -66,5 +66,6 @@
     <string name="error_message">Error Message</string>
     <string name="read_before_you_delete">Read before you delete</string>
     <string name="delete_account_content">After you have delete your account your email will be removed from the database\nAre you sure you want to proceed?</string>
+    <string name="tags_content">Tags Content</string>
 
 </resources>
