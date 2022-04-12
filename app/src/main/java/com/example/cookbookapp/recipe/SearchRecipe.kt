@@ -1,5 +1,6 @@
 package com.example.cookbookapp.recipe
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -93,6 +94,9 @@ class SearchRecipe : AppCompatActivity() {
     private fun getRecipeListData() {
         db = FirebaseFirestore.getInstance()
 
+        val sharedPreferences = getSharedPreferences("sharedUid", Context.MODE_PRIVATE)
+        val sharedUid = sharedPreferences.getString("StringUid", null).toString()
+
         db.collection("Recipe").orderBy("name").addSnapshotListener(object : EventListener<QuerySnapshot> {
             override fun onEvent(
                 value: QuerySnapshot?,
@@ -104,8 +108,10 @@ class SearchRecipe : AppCompatActivity() {
                 }
 
                 for (dc : DocumentChange in value?.documentChanges!!){
-                    if (dc.type == DocumentChange.Type.ADDED){
-                        searchArrayList.add(dc.document.toObject(Recipe::class.java))
+                    if (dc.type == DocumentChange.Type.ADDED) {
+                        if (dc.document.get("userID").toString() == sharedUid) {
+                            searchArrayList.add(dc.document.toObject(Recipe::class.java))
+                        }
                     }
                 }
 

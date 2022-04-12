@@ -11,6 +11,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cookbookapp.Dashboard
 import com.example.cookbookapp.R
@@ -45,6 +46,17 @@ class EditRecipe : AppCompatActivity() {
     private var status = ""
     private var tagList = ArrayList<Int>()
 
+    private var edited_description = ""
+    private var edited_extraInformation = ""
+    private var edited_ingredients = ""
+    private var edited_link = ""
+    private var edited_name = ""
+    private var edited_notes = ""
+    private var edited_photo = ""
+    private var edited_userID = ""
+    private var edited_status = ""
+    private var edited_tagList = ArrayList<Int>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = EditRecipeBinding.inflate(layoutInflater)
@@ -58,9 +70,21 @@ class EditRecipe : AppCompatActivity() {
                 binding.editRecipeDescription.setText(document.get("description").toString())
                 binding.editRecipeNotes.setText((document.get("notes").toString()))
                 tagList = document.get("tagList").toString() as ArrayList<Int>
-
+                photo = document.get("photo").toString()
+                binding.editRecipeVideoLink.setText(document.get("link").toString())
+                binding.editRecipeExtraInfo.setText(document.get("extraInformation").toString())
+                binding.editAddNewIngredients.setText(document.get("ingredients").toString())
             }
         }
+
+        recyclerView_tag_checkbox = binding.recyclerViewEditTagCheckbox
+        recyclerView_tag_checkbox.layoutManager = GridLayoutManager(this, 1, RecyclerView.VERTICAL, false)
+        recyclerView_tag_checkbox.setHasFixedSize(true)
+
+        tagArrayList = arrayListOf<Tag>()
+        tagAdapter = TagCheckboxRecyclerViewAdapter(tagArrayList)
+        recyclerView_tag_checkbox.adapter = tagAdapter
+        getTagsData()
 
         binding.backButton.setOnClickListener{
             startActivity(Intent(this, Dashboard::class.java))
@@ -79,6 +103,14 @@ class EditRecipe : AppCompatActivity() {
         }
 
         binding.buttonSave.setOnClickListener{
+            edited_name = binding.editRecipeName.text.toString().trim()
+            edited_description = binding.editRecipeDescription.text.toString().trim()
+            edited_notes = binding.editRecipeNotes.text.toString().trim()
+            edited_tagList = tagAdapter.getSelectedCheckboxList()
+            edited_link = binding.editRecipeVideoLink.text.toString().trim()
+            edited_extraInformation = binding.editRecipeExtraInfo.text.toString().trim()
+            edited_ingredients = binding.editAddNewIngredients.text.toString().trim()
+
 
         }
     }
