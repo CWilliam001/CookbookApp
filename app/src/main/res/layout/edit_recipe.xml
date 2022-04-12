@@ -49,6 +49,7 @@
             <EditText
                 android:id="@+id/edit_recipeDescription"
                 style="@style/editText"
+                android:inputType="textMultiLine"
                 android:hint="@string/enter_recipe_description"
                 tools:ignore="SpeakableTextPresentCheck"
                 android:importantForAutofill="no" />
@@ -61,6 +62,7 @@
             <EditText
                 android:id="@+id/edit_recipeNotes"
                 style="@style/editText"
+                android:inputType="textMultiLine"
                 android:hint="@string/enter_recipe_notes"
                 android:importantForAutofill="no"
                 tools:ignore="SpeakableTextPresentCheck" />
@@ -79,7 +81,6 @@
                 android:textColor="@color/bs_danger"
                 android:textSize="12sp"
                 android:visibility="gone" />
-
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView_edit_tag_checkbox"
@@ -107,6 +108,7 @@
 
             <Button
                 android:id="@+id/editImageBtn"
+                style="@style/theme_yellow_small_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="100dp"
@@ -145,6 +147,7 @@
             <EditText
                 android:id="@+id/edit_recipeExtraInfo"
                 style="@style/editText"
+                android:inputType="textMultiLine"
                 android:hint="@string/enter_extra_information"
                 android:importantForAutofill="no"
                 tools:ignore="SpeakableTextPresentCheck" />
@@ -157,6 +160,7 @@
             <EditText
                 android:id="@+id/edit_addNewIngredients"
                 style="@style/editText"
+                android:inputType="textMultiLine"
                 android:hint="@string/enter_ingredients"
                 android:importantForAutofill="no"
                 tools:ignore="SpeakableTextPresentCheck" />

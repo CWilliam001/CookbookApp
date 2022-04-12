@@ -29,6 +29,7 @@ class ViewRecipe : AppCompatActivity() {
 //    private var lastName = ""
     private var uid = ""
     private var photo = ""
+    private var link = ""
     private var tagList = ArrayList<Int>()
 //    private var tagNameList = ArrayList<String>()
 //    private var tagContent = ArrayList<String>()
@@ -58,6 +59,7 @@ class ViewRecipe : AppCompatActivity() {
                 binding.textViewNotesContent.text = document.get("notes").toString()
                 binding.textViewIngredientsContent.text = document.get("ingredients").toString()
                 binding.textViewExtraInformationContent.text = document.get("extraInformation").toString()
+                link = document.get("link").toString()
                 if(document.get("link").toString() == "") {
                     binding.textViewViewLink.visibility = View.GONE
                     binding.textViewLinkContent.visibility = View.GONE
@@ -103,6 +105,11 @@ class ViewRecipe : AppCompatActivity() {
         binding.buttonViewRecipeBackToDashboard.setOnClickListener{
             startActivity(Intent(this, Dashboard::class.java))
             finish()
+        }
+
+        binding.textViewLinkContent.setOnClickListener{
+            intent = Intent(Intent.ACTION_VIEW, Uri.parse("$link"))
+            startActivity(intent)
         }
 
         binding.buttonToEditRecipe.setOnClickListener{

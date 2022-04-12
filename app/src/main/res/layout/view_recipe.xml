@@ -126,7 +126,8 @@
                 style="@style/textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/link_content" />
+                android:text="@string/link_content"
+                android:textColor="#3070DC" />
 
             <TextView
                 android:id="@+id/textView_tags"

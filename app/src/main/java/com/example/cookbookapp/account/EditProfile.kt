@@ -47,7 +47,7 @@ class EditProfile : AppCompatActivity() {
 
 
 
-        var registerDate = Date()
+        val registerDate = Date()
         var stringDate = ""
 
         db.collection("User").whereEqualTo("id", sharedUid).get().addOnSuccessListener {
@@ -82,8 +82,8 @@ class EditProfile : AppCompatActivity() {
             } else {
                 // All data is valid
                 // Check if the old password filed got any changes
-                var passwordChanges = checkPasswordChanges()
-                var pw = if (passwordChanges) password else oldPassword
+                val passwordChanges = checkPasswordChanges()
+                val pw = if (passwordChanges) password else oldPassword
                 val firebaseUser = firebaseAuth.currentUser
 
                 if (firebaseUser != null) {
@@ -100,19 +100,18 @@ class EditProfile : AppCompatActivity() {
 
                     if (!passwordChanges) {
                         val credential = EmailAuthProvider.getCredential(currentEmail, oldPassword)
-                        firebaseUser?.reauthenticate(credential)?.addOnCompleteListener{
+                        firebaseUser?.reauthenticate(credential).addOnCompleteListener{
                             if (it.isSuccessful) {
                                 firebaseUser!!.updatePassword(newPassword).addOnCompleteListener{
                                 }
-                                    .addOnFailureListener{
-                                            e ->
+                                    .addOnFailureListener{ e ->
                                         Toast.makeText(this, "${e.message}", Toast.LENGTH_SHORT).show()
                                     }
                             }
                         }
 
                     }
-                    var user = Users(sharedUid.toString(), email, firstName, lastName, pw, registerDate, status)
+                    val user = Users(sharedUid.toString(), email, firstName, lastName, pw, registerDate, status)
                     db.collection("User").document("$sharedUid").set(user)
                     Toast.makeText(this, "User data has been modified", Toast.LENGTH_SHORT).show()
 
