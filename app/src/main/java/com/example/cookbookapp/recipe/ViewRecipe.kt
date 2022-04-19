@@ -102,6 +102,11 @@ class ViewRecipe : AppCompatActivity() {
                 Log.e("Firestore Error: ", e.message.toString())
             }
 
+        binding.buttonViewRecipeBackToDashboard.setOnClickListener{
+            startActivity(Intent(this, Dashboard::class.java))
+            finish()
+        }
+
         binding.textViewLinkContent.setOnClickListener{
             intent = Intent(Intent.ACTION_VIEW, Uri.parse("$link"))
             startActivity(intent)
