@@ -33,7 +33,7 @@ class ViewRecipe : AppCompatActivity() {
     private var tagList = ArrayList<Int>()
     private var tagObjList = ArrayList<Tag>()
     private var tagContent = ArrayList<String>()
-//    private var tagString = ""
+    private var tagString = ""
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -69,11 +69,27 @@ class ViewRecipe : AppCompatActivity() {
                 uid = document.get("userID").toString()
                 binding.textViewUserName.text = "By User ID: $uid"
                 tagList = document.get("tagList") as ArrayList<Int>
+                Log.e("View Recipe", "${tagList.size}")
                 if(tagList.isEmpty()) {
                     binding.textViewTags.visibility = View.GONE
                     binding.textViewTagsContent.visibility = View.GONE
                 } else {
-                    binding.textViewTagsContent.text = tagList.toString()
+//                    binding.textViewTagsContent.text = tagList.toString()
+                    // Fix bug
+                        // Init get tags document
+
+                    getTagsData()
+                    Log.e("Tag Obj List", "${tagObjList.size}")
+                    for (i in 0..tagObjList.size) {
+                        for (j in 0..tagList.size) {
+                            if (tagObjList.get(i).id.equals(tagList.get(j).toString())) {
+                                tagContent.add(tagObjList.get(i).name.toString())
+                            }
+                        }
+
+                    }
+                    tagString = tagContent.toString()
+                    binding.textViewTagsContent.text = tagString
                 }
                 if (uid == sharedUid) {
                     // Display the button if the recipe owner has visit this page
@@ -119,6 +135,41 @@ class ViewRecipe : AppCompatActivity() {
                 startActivity(intent)
             }
         }
+    }
+
+    private fun getTagsData() {
+        db = FirebaseFirestore.getInstance()
+
+        db.collection("Tag").get().addOnSuccessListener {
+
+            Log.e("IT size", "${it.size()}")
+            for (doc in it) {
+                tagObjList.add(doc.toObject(Tag::class.java))
+            }
+        }
+            .addOnFailureListener{
+                Log.e("Firestore error", it.message.toString())
+            }
+
+//        db.collection("Tag").addSnapshotListener(object : EventListener<QuerySnapshot> {
+//            override fun onEvent(
+//                value: QuerySnapshot?,
+//                error: FirebaseFirestoreException?
+//            ) {
+//                if (error != null) {
+//                    Log.e("Firestore error", error.message.toString())
+//                    return
+//                }
+//
+//                for (dc : DocumentChange in value?.documentChanges!!){
+//                    if (dc.type == DocumentChange.Type.ADDED){
+//                        tagObjList.add(dc.document.toObject(Tag::class.java))
+//                    }
+//                }
+//
+//            }
+//
+//        })
     }
 
 }
